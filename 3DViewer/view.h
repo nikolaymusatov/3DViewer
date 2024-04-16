@@ -2,6 +2,7 @@
 #define VIEW_H
 
 #include <QMainWindow>
+#include <QFileDialog>
 #include "controller.h"
 
 QT_BEGIN_NAMESPACE
@@ -19,6 +20,9 @@ class View : public QMainWindow
 public:
     View(QWidget *parent = nullptr);
     ~View();
+
+private slots:
+    void openFile_clicked();
 
 private:
     Ui::View *ui;

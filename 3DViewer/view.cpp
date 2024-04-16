@@ -9,6 +9,7 @@ View::View(QWidget *parent)
     , controller(new Controller())
 {
     ui->setupUi(this);
+    connect(ui->openFile, SIGNAL(clicked()), this, SLOT(openFile_clicked()));
 }
 
 View::~View()
@@ -17,8 +18,11 @@ View::~View()
     delete controller;
 }
 
-void View::on_openFile_clicked()
+void View::openFile_clicked()
 {
-
+    QString filename = QFileDialog::getOpenFileName(
+        this, tr("Open .obj file:"), "~", tr("Obj Files (*.obj)"));
+    ui->filePath->setText(filename);
+    // ui->openGLWidget->fileChanged = true;
 }
 
