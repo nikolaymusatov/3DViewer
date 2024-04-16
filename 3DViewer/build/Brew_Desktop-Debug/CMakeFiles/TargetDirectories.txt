@@ -1,9 +1,0 @@
-/Users/nikolajmusatov/Repository/3DViewer/3DViewer/build/Brew_Desktop-Debug/CMakeFiles/3DViewer.dir
-/Users/nikolajmusatov/Repository/3DViewer/3DViewer/build/Brew_Desktop-Debug/CMakeFiles/edit_cache.dir
-/Users/nikolajmusatov/Repository/3DViewer/3DViewer/build/Brew_Desktop-Debug/CMakeFiles/rebuild_cache.dir
-/Users/nikolajmusatov/Repository/3DViewer/3DViewer/build/Brew_Desktop-Debug/CMakeFiles/list_install_components.dir
-/Users/nikolajmusatov/Repository/3DViewer/3DViewer/build/Brew_Desktop-Debug/CMakeFiles/install.dir
-/Users/nikolajmusatov/Repository/3DViewer/3DViewer/build/Brew_Desktop-Debug/CMakeFiles/install/local.dir
-/Users/nikolajmusatov/Repository/3DViewer/3DViewer/build/Brew_Desktop-Debug/CMakeFiles/install/strip.dir
-/Users/nikolajmusatov/Repository/3DViewer/3DViewer/build/Brew_Desktop-Debug/CMakeFiles/3DViewer_autogen_timestamp_deps.dir
-/Users/nikolajmusatov/Repository/3DViewer/3DViewer/build/Brew_Desktop-Debug/CMakeFiles/3DViewer_autogen.dir
