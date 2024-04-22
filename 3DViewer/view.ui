@@ -2,183 +2,60 @@
 <ui version="4.0">
  <class>View</class>
  <widget class="QMainWindow" name="View">
+  <property name="enabled">
+   <bool>true</bool>
+  </property>
   <property name="geometry">
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1175</width>
-    <height>701</height>
+    <width>1145</width>
+    <height>700</height>
    </rect>
   </property>
   <property name="minimumSize">
    <size>
-    <width>1175</width>
-    <height>701</height>
+    <width>1145</width>
+    <height>700</height>
    </size>
   </property>
   <property name="maximumSize">
    <size>
-    <width>1175</width>
-    <height>701</height>
+    <width>1145</width>
+    <height>700</height>
    </size>
   </property>
   <property name="windowTitle">
-   <string>3D_Viewer</string>
+   <string>3DViewer</string>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">QPushButton {
+  background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,
+                                      stop: 0 rgb(73, 143, 247), stop: 1 rgb(53, 120, 247));
+  color: white; 
+  border: 1px solid black;
+}
+
+QPushButton:pressed {
+    background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,
+                                      stop: 0 rgb(63, 133, 237), stop: 1 rgb(43, 110, 237));
+}</string>
   </property>
   <widget class="QWidget" name="centralwidget">
-   <widget class="QPushButton" name="openFile">
-    <property name="geometry">
-     <rect>
-      <x>2</x>
-      <y>2</y>
-      <width>128</width>
-      <height>30</height>
-     </rect>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">QPushButton {
-   border: 2px solid gray;
-  border-radius: 8px;
-}</string>
-    </property>
-    <property name="text">
-     <string>Open</string>
-    </property>
-    <property name="default">
-     <bool>true</bool>
-    </property>
-   </widget>
-   <widget class="QComboBox" name="projectionType">
-    <property name="geometry">
-     <rect>
-      <x>262</x>
-      <y>2</y>
-      <width>128</width>
-      <height>30</height>
-     </rect>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">QComboBox{
-   border: 2px solid gray;
-  border-radius: 8px;
-}</string>
-    </property>
-   </widget>
-   <widget class="QPushButton" name="getScreenshot">
-    <property name="geometry">
-     <rect>
-      <x>392</x>
-      <y>2</y>
-      <width>128</width>
-      <height>30</height>
-     </rect>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">QPushButton {
-   border: 2px solid gray;
-  border-radius: 8px;
-}</string>
-    </property>
-    <property name="text">
-     <string>Screenshot</string>
-    </property>
-    <property name="default">
-     <bool>true</bool>
-    </property>
-   </widget>
-   <widget class="QPushButton" name="getGIF">
-    <property name="geometry">
-     <rect>
-      <x>522</x>
-      <y>2</y>
-      <width>128</width>
-      <height>30</height>
-     </rect>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">QPushButton {
-   border: 2px solid gray;
-  border-radius: 8px;
-}</string>
-    </property>
-    <property name="text">
-     <string>GIF</string>
-    </property>
-    <property name="default">
-     <bool>true</bool>
-    </property>
-   </widget>
-   <widget class="QPushButton" name="reset_model">
-    <property name="geometry">
-     <rect>
-      <x>652</x>
-      <y>2</y>
-      <width>128</width>
-      <height>30</height>
-     </rect>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">QPushButton {
-   border: 2px solid gray;
-  border-radius: 8px;
-}</string>
-    </property>
-    <property name="text">
-     <string>Reset model</string>
-    </property>
-    <property name="default">
-     <bool>true</bool>
-    </property>
-   </widget>
-   <widget class="QLineEdit" name="filePath">
-    <property name="geometry">
-     <rect>
-      <x>2</x>
-      <y>34</y>
-      <width>780</width>
-      <height>30</height>
-     </rect>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">QLineEdit {
-   border: 2px solid gray;
-  border-radius: 8px;
-}</string>
-    </property>
-    <property name="readOnly">
-     <bool>true</bool>
-    </property>
-   </widget>
-   <widget class="QPushButton" name="renderFile">
-    <property name="geometry">
-     <rect>
-      <x>132</x>
-      <y>2</y>
-      <width>128</width>
-      <height>30</height>
-     </rect>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">QPushButton {
-   border: 2px solid gray;
-  border-radius: 8px;
-}</string>
-    </property>
-    <property name="text">
-     <string>Render</string>
-    </property>
-    <property name="default">
-     <bool>true</bool>
-    </property>
-   </widget>
    <widget class="QFrame" name="frame_2">
     <property name="geometry">
      <rect>
-      <x>816</x>
-      <y>499</y>
-      <width>350</width>
-      <height>170</height>
+      <x>790</x>
+      <y>280</y>
+      <width>351</width>
+      <height>136</height>
      </rect>
+    </property>
+    <property name="sizePolicy">
+     <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+      <horstretch>0</horstretch>
+      <verstretch>0</verstretch>
+     </sizepolicy>
     </property>
     <property name="frameShape">
      <enum>QFrame::StyledPanel</enum>
@@ -190,17 +67,45 @@
      <property name="rightMargin">
       <number>5</number>
      </property>
+     <item row="2" column="0" rowspan="2">
+      <widget class="QRadioButton" name="noneVertice">
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Minimum" vsizetype="Preferred">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
+       <property name="text">
+        <string>None</string>
+       </property>
+      </widget>
+     </item>
+     <item row="2" column="3" rowspan="4">
+      <widget class="QPushButton" name="setVerticeColor">
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
+       <property name="minimumSize">
+        <size>
+         <width>72</width>
+         <height>0</height>
+        </size>
+       </property>
+       <property name="text">
+        <string>Apply</string>
+       </property>
+       <property name="default">
+        <bool>true</bool>
+       </property>
+      </widget>
+     </item>
      <item row="1" column="3">
       <widget class="QLabel" name="labelVerticesColor">
        <property name="text">
         <string>Color:</string>
-       </property>
-      </widget>
-     </item>
-     <item row="1" column="0">
-      <widget class="QLabel" name="labelVerticesDisplay">
-       <property name="text">
-        <string>Display:</string>
        </property>
       </widget>
      </item>
@@ -214,6 +119,13 @@
        </property>
       </widget>
      </item>
+     <item row="1" column="0">
+      <widget class="QLabel" name="labelVerticesDisplay">
+       <property name="text">
+        <string>Display:</string>
+       </property>
+      </widget>
+     </item>
      <item row="5" column="0">
       <widget class="QRadioButton" name="squareVertice">
        <property name="sizePolicy">
@@ -224,19 +136,6 @@
        </property>
        <property name="text">
         <string>Square</string>
-       </property>
-      </widget>
-     </item>
-     <item row="2" column="0" rowspan="2">
-      <widget class="QRadioButton" name="noneVertice">
-       <property name="sizePolicy">
-        <sizepolicy hsizetype="Minimum" vsizetype="Preferred">
-         <horstretch>0</horstretch>
-         <verstretch>0</verstretch>
-        </sizepolicy>
-       </property>
-       <property name="text">
-        <string>None</string>
        </property>
       </widget>
      </item>
@@ -260,28 +159,6 @@
        </property>
        <property name="text">
         <string>Circle</string>
-       </property>
-      </widget>
-     </item>
-     <item row="2" column="3" rowspan="4">
-      <widget class="QPushButton" name="setVerticeColor">
-       <property name="sizePolicy">
-        <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
-         <horstretch>0</horstretch>
-         <verstretch>0</verstretch>
-        </sizepolicy>
-       </property>
-       <property name="minimumSize">
-        <size>
-         <width>72</width>
-         <height>0</height>
-        </size>
-       </property>
-       <property name="text">
-        <string/>
-       </property>
-       <property name="default">
-        <bool>true</bool>
        </property>
       </widget>
      </item>
@@ -315,11 +192,17 @@
    <widget class="QFrame" name="frame">
     <property name="geometry">
      <rect>
-      <x>816</x>
-      <y>360</y>
-      <width>350</width>
-      <height>140</height>
+      <x>790</x>
+      <y>170</y>
+      <width>351</width>
+      <height>107</height>
      </rect>
+    </property>
+    <property name="sizePolicy">
+     <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+      <horstretch>0</horstretch>
+      <verstretch>0</verstretch>
+     </sizepolicy>
     </property>
     <property name="frameShape">
      <enum>QFrame::StyledPanel</enum>
@@ -370,7 +253,7 @@
         </size>
        </property>
        <property name="text">
-        <string/>
+        <string>Apply</string>
        </property>
        <property name="default">
         <bool>true</bool>
@@ -431,14 +314,14 @@
    <widget class="QFrame" name="frame_3">
     <property name="geometry">
      <rect>
-      <x>816</x>
-      <y>308</y>
-      <width>350</width>
-      <height>53</height>
+      <x>790</x>
+      <y>130</y>
+      <width>351</width>
+      <height>35</height>
      </rect>
     </property>
     <property name="sizePolicy">
-     <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
+     <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
       <horstretch>0</horstretch>
       <verstretch>0</verstretch>
      </sizepolicy>
@@ -484,7 +367,7 @@
         </size>
        </property>
        <property name="text">
-        <string/>
+        <string>Apply</string>
        </property>
        <property name="default">
         <bool>true</bool>
@@ -493,72 +376,20 @@
      </item>
     </layout>
    </widget>
-   <widget class="QFrame" name="frame_5">
-    <property name="geometry">
-     <rect>
-      <x>816</x>
-      <y>68</y>
-      <width>350</width>
-      <height>71</height>
-     </rect>
-    </property>
-    <property name="frameShape">
-     <enum>QFrame::StyledPanel</enum>
-    </property>
-    <property name="frameShadow">
-     <enum>QFrame::Raised</enum>
-    </property>
-    <layout class="QGridLayout" name="gridLayout_2">
-     <property name="leftMargin">
-      <number>5</number>
-     </property>
-     <property name="topMargin">
-      <number>5</number>
-     </property>
-     <property name="rightMargin">
-      <number>5</number>
-     </property>
-     <property name="bottomMargin">
-      <number>5</number>
-     </property>
-     <item row="0" column="0">
-      <widget class="QLabel" name="numVerticesText">
-       <property name="text">
-        <string>Number of vertices</string>
-       </property>
-      </widget>
-     </item>
-     <item row="0" column="1">
-      <widget class="QLabel" name="numVertices">
-       <property name="text">
-        <string/>
-       </property>
-      </widget>
-     </item>
-     <item row="1" column="0">
-      <widget class="QLabel" name="numEdgesText">
-       <property name="text">
-        <string>Number of edges</string>
-       </property>
-      </widget>
-     </item>
-     <item row="1" column="1">
-      <widget class="QLabel" name="numEdges">
-       <property name="text">
-        <string/>
-       </property>
-      </widget>
-     </item>
-    </layout>
-   </widget>
    <widget class="QFrame" name="frame_4">
     <property name="geometry">
      <rect>
-      <x>816</x>
-      <y>138</y>
-      <width>350</width>
-      <height>171</height>
+      <x>790</x>
+      <y>0</y>
+      <width>351</width>
+      <height>129</height>
      </rect>
+    </property>
+    <property name="sizePolicy">
+     <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+      <horstretch>0</horstretch>
+      <verstretch>0</verstretch>
+     </sizepolicy>
     </property>
     <property name="frameShape">
      <enum>QFrame::StyledPanel</enum>
@@ -818,95 +649,251 @@
      </item>
     </layout>
    </widget>
-   <widget class="QLabel" name="labelProgName">
-    <property name="geometry">
-     <rect>
-      <x>816</x>
-      <y>0</y>
-      <width>350</width>
-      <height>41</height>
-     </rect>
-    </property>
-    <property name="font">
-     <font>
-      <pointsize>20</pointsize>
-      <italic>true</italic>
-      <bold>true</bold>
-      <underline>false</underline>
-     </font>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">color: #19c257</string>
-    </property>
-    <property name="text">
-     <string>3D Viewer</string>
-    </property>
-    <property name="alignment">
-     <set>Qt::AlignCenter</set>
-    </property>
-   </widget>
-   <widget class="QLabel" name="labelAuthors">
-    <property name="geometry">
-     <rect>
-      <x>816</x>
-      <y>40</y>
-      <width>350</width>
-      <height>20</height>
-     </rect>
-    </property>
-    <property name="font">
-     <font>
-      <italic>true</italic>
-      <bold>true</bold>
-     </font>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">color: #19c257</string>
-    </property>
-    <property name="text">
-     <string>by carisafi, grapefru</string>
-    </property>
-    <property name="alignment">
-     <set>Qt::AlignCenter</set>
-    </property>
-   </widget>
-   <widget class="OpenGLWidget" name="openGLWidget">
+   <widget class="s21::OpenGLWidget" name="openGLWidget">
     <property name="geometry">
      <rect>
       <x>9</x>
-      <y>69</y>
+      <y>39</y>
       <width>771</width>
-      <height>601</height>
+      <height>631</height>
      </rect>
     </property>
    </widget>
-   <zorder>frame_5</zorder>
-   <zorder>openFile</zorder>
-   <zorder>projectionType</zorder>
-   <zorder>getScreenshot</zorder>
-   <zorder>getGIF</zorder>
-   <zorder>reset_model</zorder>
-   <zorder>filePath</zorder>
-   <zorder>renderFile</zorder>
-   <zorder>frame_2</zorder>
-   <zorder>frame</zorder>
-   <zorder>frame_3</zorder>
-   <zorder>frame_4</zorder>
-   <zorder>labelProgName</zorder>
-   <zorder>labelAuthors</zorder>
-   <zorder>openGLWidget</zorder>
+   <widget class="QFrame" name="frame_5">
+    <property name="geometry">
+     <rect>
+      <x>790</x>
+      <y>410</y>
+      <width>351</width>
+      <height>81</height>
+     </rect>
+    </property>
+    <property name="sizePolicy">
+     <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+      <horstretch>0</horstretch>
+      <verstretch>0</verstretch>
+     </sizepolicy>
+    </property>
+    <property name="frameShape">
+     <enum>QFrame::StyledPanel</enum>
+    </property>
+    <property name="frameShadow">
+     <enum>QFrame::Raised</enum>
+    </property>
+    <widget class="QWidget" name="">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>10</y>
+       <width>341</width>
+       <height>52</height>
+      </rect>
+     </property>
+     <layout class="QVBoxLayout" name="verticalLayout">
+      <item>
+       <widget class="QLabel" name="projectionType">
+        <property name="text">
+         <string>Projection type</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <layout class="QHBoxLayout" name="horizontalLayout_2">
+        <item>
+         <widget class="QRadioButton" name="radioButton_2">
+          <property name="text">
+           <string>Ortho</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <spacer name="horizontalSpacer">
+          <property name="orientation">
+           <enum>Qt::Horizontal</enum>
+          </property>
+          <property name="sizeType">
+           <enum>QSizePolicy::Preferred</enum>
+          </property>
+          <property name="sizeHint" stdset="0">
+           <size>
+            <width>40</width>
+            <height>20</height>
+           </size>
+          </property>
+         </spacer>
+        </item>
+        <item>
+         <widget class="QRadioButton" name="radioButton">
+          <property name="text">
+           <string>Frustrum</string>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </item>
+     </layout>
+    </widget>
+   </widget>
+   <widget class="QWidget" name="">
+    <property name="geometry">
+     <rect>
+      <x>790</x>
+      <y>540</y>
+      <width>121</width>
+      <height>114</height>
+     </rect>
+    </property>
+    <layout class="QGridLayout" name="gridLayout_2">
+     <item row="0" column="0">
+      <widget class="QLabel" name="numVertices">
+       <property name="enabled">
+        <bool>true</bool>
+       </property>
+       <property name="text">
+        <string/>
+       </property>
+      </widget>
+     </item>
+     <item row="1" column="0">
+      <widget class="QLabel" name="fileName">
+       <property name="enabled">
+        <bool>true</bool>
+       </property>
+       <property name="text">
+        <string/>
+       </property>
+      </widget>
+     </item>
+     <item row="2" column="0">
+      <widget class="QLabel" name="numEdges">
+       <property name="text">
+        <string/>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </widget>
+   <widget class="QWidget" name="">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>0</y>
+      <width>771</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <layout class="QHBoxLayout" name="horizontalLayout_3">
+     <property name="topMargin">
+      <number>0</number>
+     </property>
+     <item>
+      <widget class="QPushButton" name="openFile">
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Minimum" vsizetype="Expanding">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QPushButton {
+   border: 2px solid gray;
+  border-radius: 8px;
+}</string>
+       </property>
+       <property name="text">
+        <string>Open</string>
+       </property>
+       <property name="default">
+        <bool>true</bool>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="renderFile">
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Minimum" vsizetype="Expanding">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QPushButton {
+   border: 2px solid gray;
+  border-radius: 8px;
+}</string>
+       </property>
+       <property name="text">
+        <string>Render</string>
+       </property>
+       <property name="default">
+        <bool>true</bool>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="getScreenshot">
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Minimum" vsizetype="Expanding">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QPushButton {
+   border: 2px solid gray;
+  border-radius: 8px;
+}</string>
+       </property>
+       <property name="text">
+        <string>Screenshot</string>
+       </property>
+       <property name="default">
+        <bool>true</bool>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="getGIF">
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Minimum" vsizetype="Expanding">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QPushButton {
+   border: 2px solid gray;
+  border-radius: 8px;
+}</string>
+       </property>
+       <property name="text">
+        <string>GIF</string>
+       </property>
+       <property name="default">
+        <bool>true</bool>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </widget>
   </widget>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>1175</width>
+     <width>1145</width>
      <height>24</height>
     </rect>
    </property>
   </widget>
   <widget class="QStatusBar" name="statusbar">
+   <property name="enabled">
+    <bool>true</bool>
+   </property>
    <property name="sizePolicy">
     <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
      <horstretch>0</horstretch>
@@ -915,8 +902,8 @@
    </property>
    <property name="minimumSize">
     <size>
-     <width>0</width>
-     <height>1</height>
+     <width>1145</width>
+     <height>20</height>
     </size>
    </property>
    <property name="baseSize">
@@ -929,19 +916,16 @@
  </widget>
  <customwidgets>
   <customwidget>
-   <class>OpenGLWidget</class>
+   <class>s21::OpenGLWidget</class>
    <extends>QOpenGLWidget</extends>
    <header>openglwidget.h</header>
   </customwidget>
  </customwidgets>
  <tabstops>
-  <tabstop>filePath</tabstop>
   <tabstop>openFile</tabstop>
   <tabstop>renderFile</tabstop>
-  <tabstop>projectionType</tabstop>
   <tabstop>getScreenshot</tabstop>
   <tabstop>getGIF</tabstop>
-  <tabstop>reset_model</tabstop>
   <tabstop>scale_on_k</tabstop>
   <tabstop>rotate_x</tabstop>
   <tabstop>rotate_y</tabstop>

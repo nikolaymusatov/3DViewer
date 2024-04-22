@@ -9,9 +9,12 @@ class Controller {
  public:
     Controller() : model(new Model()) {}
     ~Controller();
+
+    void parseFile(QString &path);
+    Object* getObject();
   
  private:
-  Model *model;
+    Model *model;
 };
 
 }  // namespace s21

@@ -3,6 +3,7 @@
 
 #include <QMainWindow>
 #include <QFileDialog>
+#include "openglwidget.h"
 #include "controller.h"
 
 QT_BEGIN_NAMESPACE

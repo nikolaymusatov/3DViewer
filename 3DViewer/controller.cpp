@@ -7,3 +7,14 @@ Controller::~Controller()
 {
     delete model;
 }
+
+void Controller::parseFile(QString &path)
+{
+    model->parseFile(path);
+}
+
+Object *Controller::getObject()
+{
+    return model->getObject();
+}
+

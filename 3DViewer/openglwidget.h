@@ -3,26 +3,28 @@
 
 #include <QOpenGLWidget>
 #include <QOpenGLFunctions>
-#include <QWidget>
-#include <iostream>
+#include "object.h"
 
-class OpenGLWidget : public QOpenGLWidget, protected QOpenGLFunctions {
+namespace s21 {
+
+class OpenGLWidget : public QOpenGLWidget
+{
+    Q_OBJECT
 public:
-    explicit OpenGLWidget(QWidget *parent = Q_NULLPTR);
-    double bg_red = 0, bg_green = 0, bg_blue = 0;
-    double pol_red = 0, pol_green = 0, pol_blue = 0;
-    double ver_red = 0, ver_green = 0, ver_blue = 0;
-    double edges_thickness = 1, vertice_size = 1;
-    int vertice_type = 0, projectionType = 0, edges_type = 0;
+    explicit OpenGLWidget(QWidget *parent = 0);
+    ~OpenGLWidget() {}
 
-private:
-    ~OpenGLWidget() override;
-    QPointF lastMousePos;
-;
+    void setObject(Object* obj);
 
 protected:
-    // OPENGL
+    void initializeGL() override;
+    void resizeGL(int w, int h) override;
+    void paintGL() override;
 
+private:
+    Object* object;
 };
+
+}
 
 #endif // OPENGLWIDGET_H
