@@ -24,6 +24,9 @@ public:
 
 private slots:
     void openFile_clicked();
+    void applyParams_clicked();
+    void resetParams_clicked();
+    void scale_valueChanged(double ratio);
 
 private:
     Ui::View *ui;

@@ -440,6 +440,9 @@ QPushButton:pressed {
        <property name="maximum">
         <double>1000.990000000000009</double>
        </property>
+       <property name="singleStep">
+        <double>0.050000000000000</double>
+       </property>
        <property name="value">
         <double>0.000000000000000</double>
        </property>
@@ -468,6 +471,9 @@ QPushButton:pressed {
        <property name="maximum">
         <double>1000.000000000000000</double>
        </property>
+       <property name="singleStep">
+        <double>0.050000000000000</double>
+       </property>
        <property name="value">
         <double>0.000000000000000</double>
        </property>
@@ -495,6 +501,9 @@ QPushButton:pressed {
        </property>
        <property name="maximum">
         <double>1000.990000000000009</double>
+       </property>
+       <property name="singleStep">
+        <double>0.050000000000000</double>
        </property>
        <property name="value">
         <double>0.000000000000000</double>
@@ -531,6 +540,9 @@ QPushButton:pressed {
        <property name="maximum">
         <double>1000.000000000000000</double>
        </property>
+       <property name="singleStep">
+        <double>0.050000000000000</double>
+       </property>
        <property name="value">
         <double>0.000000000000000</double>
        </property>
@@ -544,12 +556,15 @@ QPushButton:pressed {
       </widget>
      </item>
      <item row="0" column="2">
-      <widget class="QDoubleSpinBox" name="scale_on_k">
+      <widget class="QDoubleSpinBox" name="scale">
        <property name="minimum">
         <double>-1000.000000000000000</double>
        </property>
        <property name="maximum">
         <double>1000.000000000000000</double>
+       </property>
+       <property name="singleStep">
+        <double>0.050000000000000</double>
        </property>
        <property name="value">
         <double>1.000000000000000</double>
@@ -578,6 +593,9 @@ QPushButton:pressed {
        </property>
        <property name="maximum">
         <double>1000.990000000000009</double>
+       </property>
+       <property name="singleStep">
+        <double>0.050000000000000</double>
        </property>
        <property name="value">
         <double>0.000000000000000</double>
@@ -608,7 +626,7 @@ QPushButton:pressed {
         <double>1000.000000000000000</double>
        </property>
        <property name="singleStep">
-        <double>1.000000000000000</double>
+        <double>0.500000000000000</double>
        </property>
        <property name="value">
         <double>0.000000000000000</double>
@@ -616,7 +634,7 @@ QPushButton:pressed {
       </widget>
      </item>
      <item row="3" column="3" colspan="2">
-      <widget class="QPushButton" name="reset_params">
+      <widget class="QPushButton" name="resetParams">
        <property name="styleSheet">
         <string notr="true">QPushButton {
    border: 2px solid gray;
@@ -632,7 +650,7 @@ QPushButton:pressed {
       </widget>
      </item>
      <item row="3" column="0" colspan="3">
-      <widget class="QPushButton" name="apply_params">
+      <widget class="QPushButton" name="applyParams">
        <property name="styleSheet">
         <string notr="true">QPushButton {
    border: 2px solid gray;
@@ -680,7 +698,7 @@ QPushButton:pressed {
     <property name="frameShadow">
      <enum>QFrame::Raised</enum>
     </property>
-    <widget class="QWidget" name="">
+    <widget class="QWidget" name="layoutWidget">
      <property name="geometry">
       <rect>
        <x>10</x>
@@ -737,7 +755,7 @@ QPushButton:pressed {
      </layout>
     </widget>
    </widget>
-   <widget class="QWidget" name="">
+   <widget class="QWidget" name="layoutWidget">
     <property name="geometry">
      <rect>
       <x>790</x>
@@ -776,7 +794,7 @@ QPushButton:pressed {
      </item>
     </layout>
    </widget>
-   <widget class="QWidget" name="">
+   <widget class="QWidget" name="layoutWidget">
     <property name="geometry">
      <rect>
       <x>10</x>
@@ -926,15 +944,15 @@ QPushButton:pressed {
   <tabstop>renderFile</tabstop>
   <tabstop>getScreenshot</tabstop>
   <tabstop>getGIF</tabstop>
-  <tabstop>scale_on_k</tabstop>
+  <tabstop>scale</tabstop>
   <tabstop>rotate_x</tabstop>
   <tabstop>rotate_y</tabstop>
   <tabstop>rotate_z</tabstop>
   <tabstop>move_on_x</tabstop>
   <tabstop>move_on_y</tabstop>
   <tabstop>move_on_z</tabstop>
-  <tabstop>apply_params</tabstop>
-  <tabstop>reset_params</tabstop>
+  <tabstop>applyParams</tabstop>
+  <tabstop>resetParams</tabstop>
   <tabstop>setBgColor</tabstop>
   <tabstop>solidPolygonType</tabstop>
   <tabstop>dashedPolygonType</tabstop>

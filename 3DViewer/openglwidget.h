@@ -3,7 +3,8 @@
 
 #include <QOpenGLWidget>
 #include <QOpenGLFunctions>
-#include "object.h"
+#include <QVector3D>
+#include <QMouseEvent>
 
 namespace s21 {
 
@@ -14,15 +15,21 @@ public:
     explicit OpenGLWidget(QWidget *parent = 0);
     ~OpenGLWidget() {}
 
-    void setObject(Object* obj);
+    void setVertices(QVector<QVector3D>* v);
+    void setIndices(QVector<GLuint>* i);
 
 protected:
     void initializeGL() override;
     void resizeGL(int w, int h) override;
     void paintGL() override;
+    void mousePressEvent(QMouseEvent *) override;
+    void mouseMoveEvent(QMouseEvent *) override;
 
 private:
-    Object* object;
+    float xRot, yRot;
+    QPoint mousePos;
+    QVector<QVector3D>* vertices;
+    QVector<GLuint>* indices;
 };
 
 }

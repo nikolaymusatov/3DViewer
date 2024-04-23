@@ -20,8 +20,6 @@ set(PROJECT_SOURCES
         main.cpp
         model.cpp
         model.h
-        object.h
-        object.cpp
         openglwidget.cpp
         openglwidget.h
         view.cpp

@@ -3,8 +3,8 @@
 
 #include <QFile>
 #include <QTextStream>
+#include <QVector3D>
 #include <QOpenGLWidget>
-#include "object.h"
 
 
 namespace s21 {
@@ -14,14 +14,20 @@ class Model {
     Model() = default;
      ~Model() {}
 
-    void parseFile(QString& path);
-    Object* getObject();
+    void process(QString& path);
+    QVector<QVector3D>* changeScale(GLfloat ratio);
+    QVector<QVector3D>* moveModel(GLfloat x, GLfloat y, GLfloat z);
+    QVector<QVector3D>* getVertices();
+    QVector<GLuint>* getIndices();
 
  private:
-    Object object;
+    QVector<QVector3D> vertices;
+    QVector<GLuint> indices;
 
+    void parseFile(QString& path);
     void parseVertice(QStringList &line);
     void parseFace(QStringList &line);
+    void centerModel();
 };
 
 }  // namespace s21
