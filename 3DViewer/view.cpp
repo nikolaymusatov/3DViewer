@@ -14,6 +14,8 @@ View::View(QWidget *parent)
     ui->statusbar->addWidget(ui->numEdges);
     connect(ui->openFile, SIGNAL(clicked()), this, SLOT(openFile_clicked()));
     connect(ui->resetParams, SIGNAL(clicked()), this, SLOT(resetParams_clicked()));
+    connect(ui->setBgColor, SIGNAL(clicked()), this, SLOT(setBgColor_clicked()));
+    connect(ui->setPolygonColor, SIGNAL(clicked()), this, SLOT(setPolygonColor_clicked()));
     connect(ui->scale, SIGNAL(valueChanged(double)), this, SLOT(scale_valueChanged()));
     connect(ui->rotateX, SIGNAL(valueChanged(double)), this, SLOT(rotate_valueChanged()));
     connect(ui->rotateY, SIGNAL(valueChanged(double)), this, SLOT(rotate_valueChanged()));
@@ -26,7 +28,6 @@ View::View(QWidget *parent)
 View::~View()
 {
     delete ui;
-    //delete controller;
 }
 
 void View::openFile_clicked()
@@ -73,3 +74,21 @@ void View::move_valueChanged()
     ui->openGLWidget->moveObject(ui->moveX->value(), ui->moveY->value(), ui->moveZ->value());
     ui->openGLWidget->update();
 }
+
+void View::setBgColor_clicked()
+{
+    QColor bgColor = QColorDialog::getColor();
+    if (bgColor.isValid())
+        ui->openGLWidget->setBackgroundColor(bgColor.redF(), bgColor.greenF(), bgColor.blueF());
+    ui->openGLWidget->update();
+}
+
+
+void View::setPolygonColor_clicked()
+{
+    QColor pColor = QColorDialog::getColor();
+    if (pColor.isValid())
+        ui->openGLWidget->setPolygonColor(pColor);
+    ui->openGLWidget->update();
+}
+

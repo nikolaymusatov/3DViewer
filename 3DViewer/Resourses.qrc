@@ -2,5 +2,6 @@
     <qresource prefix="/">
         <file>fshader.fsh</file>
         <file>vshader.vsh</file>
+        <file>Resourses/3DViewer.icns</file>
     </qresource>
 </RCC>

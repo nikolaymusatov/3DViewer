@@ -3,6 +3,7 @@
 
 #include <QMainWindow>
 #include <QFileDialog>
+#include <QColorDialog>
 #include <memory>
 #include "openglwidget.h"
 #include "controller.h"
@@ -26,6 +27,8 @@ public:
 private slots:
     void openFile_clicked();
     void resetParams_clicked();
+    void setBgColor_clicked();
+    void setPolygonColor_clicked();
     void scale_valueChanged();
     void rotate_valueChanged();
     void move_valueChanged();

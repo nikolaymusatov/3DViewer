@@ -1,6 +1,4 @@
 #include "openglwidget.h"
-#include <QDebug>
-#include <iostream>
 
 using namespace s21;
 
@@ -18,6 +16,17 @@ void OpenGLWidget::setVertices(QVector<QVector3D> *v)
 void OpenGLWidget::setIndices(QVector<GLuint> *i)
 {
     indices = i;
+}
+
+void OpenGLWidget::setBackgroundColor(float red, float green, float blue)
+{
+    bgColor = {red, green, blue};
+    update();
+}
+
+void OpenGLWidget::setPolygonColor(QColor color)
+{
+    pColor = color;
 }
 
 void OpenGLWidget::rotateObject(const QVector3D &angles)
@@ -40,7 +49,9 @@ void OpenGLWidget::scaleObject(double ratio)
 void OpenGLWidget::initializeGL()
 {
     initializeOpenGLFunctions();
-    glClearColor(0.9, 0.9, 0.9, 1);
+    bgColor = {0.9, 0.9, 0.9};
+    pColor = QColor(80, 80, 80, 255);
+    glClearColor(bgColor[0], bgColor[1], bgColor[2], 1);
     glEnable(GL_DEPTH_TEST);
     glEnable(GL_CULL_FACE);
     initShaders();
@@ -56,7 +67,7 @@ void OpenGLWidget::resizeGL(int w, int h)
 void OpenGLWidget::paintGL()
 {
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-
+    glClearColor(bgColor[0], bgColor[1], bgColor[2], 1);
     if (vertices) {
         projectionMatrix.setToIdentity();
         projectionMatrix.perspective(45, aspectRatio, 0.001f, 1000.0f);
@@ -68,17 +79,10 @@ void OpenGLWidget::paintGL()
         modelMatrix.scale(scale);
         modelMatrix.rotate(rotation);
         modelMatrix.translate(translation);
-
-        // for (int i = 0; i < 4; i++) {
-        //     for (int j = 0; j < 4; j++)
-        //         std::cout << (viewMatrix * modelMatrix)(i, j) << "    ";
-        //     std::cout << std::endl;
-        // }
-
         program.enableAttributeArray("vertexPosition");
         program.setAttributeArray("vertexPosition", vertices->constData());
         program.setUniformValue("renderTexture", false);
-
+        program.setUniformValue("pColor", pColor);
         program.setUniformValue("modelViewMatrix", viewMatrix * modelMatrix);
         program.setUniformValue("projectionMatrix", projectionMatrix);
         program.setUniformValue("modelViewProjMatrix", projectionMatrix * viewMatrix * modelMatrix);
@@ -87,15 +91,22 @@ void OpenGLWidget::paintGL()
     }
 }
 
-void OpenGLWidget::mousePressEvent(QMouseEvent *mouse)
+void OpenGLWidget::mousePressEvent(QMouseEvent *event)
 {
-    mousePos = mouse->pos();
+    if (event->buttons() == Qt::LeftButton)
+        mousePos = QVector2D(event->position());
+    event->accept();
 }
 
-void OpenGLWidget::mouseMoveEvent(QMouseEvent *mouse)
+void OpenGLWidget::mouseMoveEvent(QMouseEvent *event)
 {
-    xRot = 0.01 / M_PI * (mouse->pos().y() - mousePos.y());
-    yRot = 0.01 / M_PI * (mouse->pos().x() - mousePos.x());
+    float *x, *y, *z;
+    if (event->buttons() != Qt::LeftButton) return;
+    QVector2D diff = QVector2D(event->position()) - mousePos;
+    mousePos = QVector2D(event->position());
+    float angle = diff.length() / 2.0;
+    QVector3D axis = QVector3D(diff.y(), diff.x(), 0.0f);
+    rotation = QQuaternion::fromAxisAndAngle(axis, angle) * rotation;
     update();
 }
 

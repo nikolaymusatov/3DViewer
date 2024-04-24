@@ -12,8 +12,6 @@ class Controller {
     ~Controller() {}
 
     void process(QString &path);
-    // QVector<QVector3D>* moveModel(GLfloat x, GLfloat y, GLfloat z);
-    // QVector<QVector3D>* changeScale(GLfloat ratio);
     QVector<QVector3D>* getVertices();
     QVector<GLuint>* getIndices();
   

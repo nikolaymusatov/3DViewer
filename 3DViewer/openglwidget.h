@@ -1,6 +1,7 @@
 #ifndef OPENGLWIDGET_H
 #define OPENGLWIDGET_H
 
+#include <QColor>
 #include <QOpenGLWidget>
 #include <QOpenGLFunctions>
 #include <QOpenGLShaderProgram>
@@ -19,6 +20,8 @@ public:
 
     void setVertices(QVector<QVector3D>* v);
     void setIndices(QVector<GLuint>* i);
+    void setBackgroundColor(float red, float green, float blue);
+    void setPolygonColor(QColor color);
     void rotateObject(const QVector3D &angles);
     void moveObject(double x, double y, double z);
     void scaleObject(double ratio);
@@ -33,10 +36,10 @@ protected:
     void initObject();
 
 private:
-    float xRot, yRot;
-    float aspectRatio;
-    float scale;
-    QPoint mousePos;
+    float aspectRatio, scale;
+    QVector<GLfloat> bgColor;
+    QColor pColor;
+    QVector2D mousePos;
     QQuaternion rotation;
     QVector3D translation;
     QMatrix4x4 modelMatrix, viewMatrix, projectionMatrix;

@@ -3,15 +3,6 @@
 using namespace s21;
 
 
-// Controller::Controller() : model(new Model())
-// {
-// }
-
-// Controller::~Controller()
-// {
-//     delete model;
-// }
-
 void Controller::process(QString &path)
 {
     model->process(path);
