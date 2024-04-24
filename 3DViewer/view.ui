@@ -95,7 +95,7 @@ QPushButton:pressed {
         </size>
        </property>
        <property name="text">
-        <string>Apply</string>
+        <string>Select</string>
        </property>
        <property name="default">
         <bool>true</bool>
@@ -253,7 +253,7 @@ QPushButton:pressed {
         </size>
        </property>
        <property name="text">
-        <string>Apply</string>
+        <string>Select</string>
        </property>
        <property name="default">
         <bool>true</bool>
@@ -367,7 +367,7 @@ QPushButton:pressed {
         </size>
        </property>
        <property name="text">
-        <string>Apply</string>
+        <string>Select</string>
        </property>
        <property name="default">
         <bool>true</bool>
@@ -410,17 +410,17 @@ QPushButton:pressed {
      <property name="bottomMargin">
       <number>5</number>
      </property>
-     <item row="2" column="0">
-      <widget class="QLabel" name="move_text">
+     <item row="0" column="0" colspan="2">
+      <widget class="QLabel" name="scaleLabel">
        <property name="text">
-        <string>Move (x, y, z)</string>
+        <string>Scale (k)</string>
        </property>
       </widget>
      </item>
-     <item row="1" column="2">
-      <widget class="QDoubleSpinBox" name="rotate_x">
+     <item row="1" column="4">
+      <widget class="QDoubleSpinBox" name="rotateZ">
        <property name="sizePolicy">
-        <sizepolicy hsizetype="Fixed" vsizetype="Minimum">
+        <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
          <horstretch>0</horstretch>
          <verstretch>0</verstretch>
         </sizepolicy>
@@ -441,7 +441,7 @@ QPushButton:pressed {
         <double>1000.990000000000009</double>
        </property>
        <property name="singleStep">
-        <double>0.050000000000000</double>
+        <double>0.500000000000000</double>
        </property>
        <property name="value">
         <double>0.000000000000000</double>
@@ -449,7 +449,45 @@ QPushButton:pressed {
       </widget>
      </item>
      <item row="2" column="3">
-      <widget class="QDoubleSpinBox" name="move_on_y">
+      <widget class="QDoubleSpinBox" name="moveY">
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
+       <property name="baseSize">
+        <size>
+         <width>71</width>
+         <height>0</height>
+        </size>
+       </property>
+       <property name="layoutDirection">
+        <enum>Qt::LeftToRight</enum>
+       </property>
+       <property name="minimum">
+        <double>-1000.000000000000000</double>
+       </property>
+       <property name="maximum">
+        <double>1000.000000000000000</double>
+       </property>
+       <property name="singleStep">
+        <double>0.050000000000000</double>
+       </property>
+       <property name="value">
+        <double>0.000000000000000</double>
+       </property>
+      </widget>
+     </item>
+     <item row="2" column="0">
+      <widget class="QLabel" name="moveLabel">
+       <property name="text">
+        <string>Move (x, y, z)</string>
+       </property>
+      </widget>
+     </item>
+     <item row="2" column="2">
+      <widget class="QDoubleSpinBox" name="moveX">
        <property name="sizePolicy">
         <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
          <horstretch>0</horstretch>
@@ -480,7 +518,7 @@ QPushButton:pressed {
       </widget>
      </item>
      <item row="1" column="3">
-      <widget class="QDoubleSpinBox" name="rotate_y">
+      <widget class="QDoubleSpinBox" name="rotateY">
        <property name="sizePolicy">
         <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
          <horstretch>0</horstretch>
@@ -503,7 +541,7 @@ QPushButton:pressed {
         <double>1000.990000000000009</double>
        </property>
        <property name="singleStep">
-        <double>0.050000000000000</double>
+        <double>0.500000000000000</double>
        </property>
        <property name="value">
         <double>0.000000000000000</double>
@@ -511,14 +549,45 @@ QPushButton:pressed {
       </widget>
      </item>
      <item row="1" column="0" colspan="2">
-      <widget class="QLabel" name="rotate_text">
+      <widget class="QLabel" name="rotateLabel">
        <property name="text">
         <string>Rotate (x, y, z)</string>
        </property>
       </widget>
      </item>
-     <item row="2" column="2">
-      <widget class="QDoubleSpinBox" name="move_on_x">
+     <item row="1" column="2">
+      <widget class="QDoubleSpinBox" name="rotateX">
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Fixed" vsizetype="Minimum">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
+       <property name="baseSize">
+        <size>
+         <width>71</width>
+         <height>0</height>
+        </size>
+       </property>
+       <property name="layoutDirection">
+        <enum>Qt::LeftToRight</enum>
+       </property>
+       <property name="minimum">
+        <double>-1000.000000000000000</double>
+       </property>
+       <property name="maximum">
+        <double>1000.990000000000009</double>
+       </property>
+       <property name="singleStep">
+        <double>0.500000000000000</double>
+       </property>
+       <property name="value">
+        <double>0.000000000000000</double>
+       </property>
+      </widget>
+     </item>
+     <item row="2" column="4">
+      <widget class="QDoubleSpinBox" name="moveZ">
        <property name="sizePolicy">
         <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
          <horstretch>0</horstretch>
@@ -545,13 +614,6 @@ QPushButton:pressed {
        </property>
        <property name="value">
         <double>0.000000000000000</double>
-       </property>
-      </widget>
-     </item>
-     <item row="0" column="0" colspan="2">
-      <widget class="QLabel" name="scale_text">
-       <property name="text">
-        <string>Scale (k)</string>
        </property>
       </widget>
      </item>
@@ -571,68 +633,6 @@ QPushButton:pressed {
        </property>
       </widget>
      </item>
-     <item row="1" column="4">
-      <widget class="QDoubleSpinBox" name="rotate_z">
-       <property name="sizePolicy">
-        <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
-         <horstretch>0</horstretch>
-         <verstretch>0</verstretch>
-        </sizepolicy>
-       </property>
-       <property name="baseSize">
-        <size>
-         <width>71</width>
-         <height>0</height>
-        </size>
-       </property>
-       <property name="layoutDirection">
-        <enum>Qt::LeftToRight</enum>
-       </property>
-       <property name="minimum">
-        <double>-1000.000000000000000</double>
-       </property>
-       <property name="maximum">
-        <double>1000.990000000000009</double>
-       </property>
-       <property name="singleStep">
-        <double>0.050000000000000</double>
-       </property>
-       <property name="value">
-        <double>0.000000000000000</double>
-       </property>
-      </widget>
-     </item>
-     <item row="2" column="4">
-      <widget class="QDoubleSpinBox" name="move_on_z">
-       <property name="sizePolicy">
-        <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
-         <horstretch>0</horstretch>
-         <verstretch>0</verstretch>
-        </sizepolicy>
-       </property>
-       <property name="baseSize">
-        <size>
-         <width>71</width>
-         <height>0</height>
-        </size>
-       </property>
-       <property name="layoutDirection">
-        <enum>Qt::LeftToRight</enum>
-       </property>
-       <property name="minimum">
-        <double>-1000.000000000000000</double>
-       </property>
-       <property name="maximum">
-        <double>1000.000000000000000</double>
-       </property>
-       <property name="singleStep">
-        <double>0.500000000000000</double>
-       </property>
-       <property name="value">
-        <double>0.000000000000000</double>
-       </property>
-      </widget>
-     </item>
      <item row="3" column="3" colspan="2">
       <widget class="QPushButton" name="resetParams">
        <property name="styleSheet">
@@ -643,22 +643,6 @@ QPushButton:pressed {
        </property>
        <property name="text">
         <string>Reset</string>
-       </property>
-       <property name="default">
-        <bool>true</bool>
-       </property>
-      </widget>
-     </item>
-     <item row="3" column="0" colspan="3">
-      <widget class="QPushButton" name="applyParams">
-       <property name="styleSheet">
-        <string notr="true">QPushButton {
-   border: 2px solid gray;
-  border-radius: 6px;
-}</string>
-       </property>
-       <property name="text">
-        <string>Apply</string>
        </property>
        <property name="default">
         <bool>true</bool>
@@ -945,13 +929,12 @@ QPushButton:pressed {
   <tabstop>getScreenshot</tabstop>
   <tabstop>getGIF</tabstop>
   <tabstop>scale</tabstop>
-  <tabstop>rotate_x</tabstop>
-  <tabstop>rotate_y</tabstop>
-  <tabstop>rotate_z</tabstop>
-  <tabstop>move_on_x</tabstop>
-  <tabstop>move_on_y</tabstop>
-  <tabstop>move_on_z</tabstop>
-  <tabstop>applyParams</tabstop>
+  <tabstop>rotateX</tabstop>
+  <tabstop>rotateY</tabstop>
+  <tabstop>rotateZ</tabstop>
+  <tabstop>moveX</tabstop>
+  <tabstop>moveY</tabstop>
+  <tabstop>moveZ</tabstop>
   <tabstop>resetParams</tabstop>
   <tabstop>setBgColor</tabstop>
   <tabstop>solidPolygonType</tabstop>

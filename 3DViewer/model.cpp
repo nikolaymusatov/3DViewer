@@ -29,27 +29,27 @@ void Model::process(QString& path)
     centerModel();
 }
 
-QVector<QVector3D>* Model::changeScale(GLfloat ratio)
-{
-    static QVector<QVector3D> tmp;
-    tmp.clear();
-    for (size_t i = 0; i < vertices.size(); i++)
-        tmp.append(QVector3D(vertices[i].x() * ratio,
-                             vertices[i].y() * ratio,
-                             vertices[i].z() * ratio));
-    return &tmp;
-}
+// QVector<QVector3D>* Model::changeScale(GLfloat ratio)
+// {
+//     static QVector<QVector3D> tmp;
+//     tmp.clear();
+//     for (size_t i = 0; i < vertices.size(); i++)
+//         tmp.append(QVector3D(vertices[i].x() * ratio,
+//                              vertices[i].y() * ratio,
+//                              vertices[i].z() * ratio));
+//     return &tmp;
+// }
 
-QVector<QVector3D> *Model::moveModel(GLfloat x, GLfloat y, GLfloat z)
-{
-    static QVector<QVector3D> tmp;
-    tmp.clear();
-    for (size_t i = 0; i < vertices.size(); i++)
-        tmp.append(QVector3D(vertices[i].x() + x,
-                             vertices[i].y() * y,
-                             vertices[i].z() * z));
-    return &tmp;
-}
+// QVector<QVector3D> *Model::moveModel(GLfloat x, GLfloat y, GLfloat z)
+// {
+//     static QVector<QVector3D> tmp;
+//     tmp.clear();
+//     for (size_t i = 0; i < vertices.size(); i++)
+//         tmp.append(QVector3D(vertices[i].x() + x,
+//                              vertices[i].y() * y,
+//                              vertices[i].z() * z));
+//     return &tmp;
+// }
 
 QVector<QVector3D> *Model::getVertices()
 {
