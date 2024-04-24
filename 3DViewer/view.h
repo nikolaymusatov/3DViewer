@@ -3,6 +3,7 @@
 
 #include <QMainWindow>
 #include <QFileDialog>
+#include <memory>
 #include "openglwidget.h"
 #include "controller.h"
 
@@ -31,7 +32,7 @@ private slots:
 
 private:
     Ui::View *ui;
-    Controller *controller;
+    std::unique_ptr<Controller> controller;
 
 };
 

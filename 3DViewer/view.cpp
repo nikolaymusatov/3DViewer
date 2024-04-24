@@ -1,6 +1,5 @@
 #include "view.h"
 #include "./ui_view.h"
-#include <iostream>
 
 using namespace s21;
 
@@ -27,7 +26,7 @@ View::View(QWidget *parent)
 View::~View()
 {
     delete ui;
-    delete controller;
+    //delete controller;
 }
 
 void View::openFile_clicked()
@@ -66,8 +65,6 @@ void View::scale_valueChanged()
 void View::rotate_valueChanged()
 {
     ui->openGLWidget->rotateObject(QVector3D(ui->rotateX->value(), ui->rotateY->value(), ui->rotateZ->value()));
-    //ui->openGLWidget->rotateObject(QVector3D(0, 1, 0), ui->rotateY->value());
-    //ui->openGLWidget->rotateObject(QVector3D(0, 0, 1), ui->rotateZ->value());
     ui->openGLWidget->update();
 }
 

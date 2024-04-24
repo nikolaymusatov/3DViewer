@@ -1,6 +1,7 @@
 #ifndef CONTROLLER_H
 #define CONTROLLER_H
 
+#include <memory>
 #include "model.h"
 
 namespace s21 {
@@ -8,7 +9,7 @@ namespace s21 {
 class Controller {
  public:
     Controller() : model(new Model()) {}
-    ~Controller();
+    ~Controller() {}
 
     void process(QString &path);
     // QVector<QVector3D>* moveModel(GLfloat x, GLfloat y, GLfloat z);
@@ -17,7 +18,7 @@ class Controller {
     QVector<GLuint>* getIndices();
   
  private:
-    Model *model;
+    std::unique_ptr<Model> model;
 };
 
 }  // namespace s21
