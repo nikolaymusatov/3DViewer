@@ -29,9 +29,15 @@ private slots:
     void resetParams_clicked();
     void setBgColor_clicked();
     void setPolygonColor_clicked();
+    void setVerticeColor_clicked();
     void scale_valueChanged();
     void rotate_valueChanged();
     void move_valueChanged();
+    void linesWidth_sliderMoved(int position);
+    void sizeVertice_sliderMoved(int position);
+    void polygonType_toggled(bool checked);
+    void verticeType_toggled();
+    void projectionType_toggled(bool checked);
 
 private:
     Ui::View *ui;

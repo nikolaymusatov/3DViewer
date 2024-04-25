@@ -22,23 +22,33 @@ public:
     void setIndices(QVector<GLuint>* i);
     void setBackgroundColor(float red, float green, float blue);
     void setPolygonColor(QColor color);
+    void setLinesWidth(int width);
+    void setStippleLines(bool status);
+    void setOrthoProjection(bool status);
+    void setVerticeColor(QColor color);
+    void setVerticeSize(int size);
+    void setVerticeType(int type);
     void rotateObject(const QVector3D &angles);
     void moveObject(double x, double y, double z);
     void scaleObject(double ratio);
 
-protected:
+private:
     void initializeGL() override;
     void resizeGL(int w, int h) override;
     void paintGL() override;
     void mousePressEvent(QMouseEvent *) override;
     void mouseMoveEvent(QMouseEvent *) override;
     void initShaders();
-    void initObject();
+    void setVerticeSettings();
+    void setLinesType();
+    void setProjectionType();
 
-private:
+    int linesWidth, verticeSize, verticeType;
     float aspectRatio, scale;
+    bool stippleLines;
+    bool orthoProjection;
     QVector<GLfloat> bgColor;
-    QColor pColor;
+    QColor pColor, vColor;
     QVector2D mousePos;
     QQuaternion rotation;
     QVector3D translation;

@@ -78,6 +78,9 @@ QPushButton:pressed {
        <property name="text">
         <string>None</string>
        </property>
+       <property name="checked">
+        <bool>true</bool>
+       </property>
       </widget>
      </item>
      <item row="2" column="3" rowspan="4">
@@ -215,7 +218,7 @@ QPushButton:pressed {
       <number>5</number>
      </property>
      <item row="0" column="0" colspan="4">
-      <widget class="QLabel" name="labelPolygonStyle">
+      <widget class="QLabel" name="polygonStyleLabel">
        <property name="text">
         <string>Polygons style</string>
        </property>
@@ -225,7 +228,7 @@ QPushButton:pressed {
       </widget>
      </item>
      <item row="1" column="3">
-      <widget class="QLabel" name="labelPolygonColor">
+      <widget class="QLabel" name="polygonColorLabel">
        <property name="text">
         <string>Color:</string>
        </property>
@@ -235,6 +238,9 @@ QPushButton:pressed {
       <widget class="QRadioButton" name="solidPolygonType">
        <property name="text">
         <string>Solid</string>
+       </property>
+       <property name="checked">
+        <bool>true</bool>
        </property>
       </widget>
      </item>
@@ -261,14 +267,14 @@ QPushButton:pressed {
       </widget>
      </item>
      <item row="1" column="0">
-      <widget class="QLabel" name="labelPolygonLineType">
+      <widget class="QLabel" name="polygonLineTypeLabel">
        <property name="text">
         <string>Line type:</string>
        </property>
       </widget>
      </item>
      <item row="1" column="1" colspan="2">
-      <widget class="QLabel" name="labelPolygonThickness">
+      <widget class="QLabel" name="linesWidthLabel">
        <property name="text">
         <string>Thickness:</string>
        </property>
@@ -285,7 +291,7 @@ QPushButton:pressed {
       </widget>
      </item>
      <item row="2" column="1" rowspan="3" colspan="2">
-      <widget class="QSlider" name="polygonThickness">
+      <widget class="QSlider" name="linesWidth">
        <property name="sizePolicy">
         <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
          <horstretch>0</horstretch>
@@ -302,10 +308,13 @@ QPushButton:pressed {
         <number>1</number>
        </property>
        <property name="maximum">
-        <number>100</number>
+        <number>10</number>
        </property>
        <property name="orientation">
         <enum>Qt::Horizontal</enum>
+       </property>
+       <property name="tickPosition">
+        <enum>QSlider::NoTicks</enum>
        </property>
       </widget>
      </item>
@@ -705,9 +714,12 @@ QPushButton:pressed {
       <item>
        <layout class="QHBoxLayout" name="horizontalLayout_2">
         <item>
-         <widget class="QRadioButton" name="radioButton_2">
+         <widget class="QRadioButton" name="perspectProjection">
           <property name="text">
-           <string>Ortho</string>
+           <string>Perspective</string>
+          </property>
+          <property name="checked">
+           <bool>true</bool>
           </property>
          </widget>
         </item>
@@ -728,9 +740,9 @@ QPushButton:pressed {
          </spacer>
         </item>
         <item>
-         <widget class="QRadioButton" name="radioButton">
+         <widget class="QRadioButton" name="orthoProjection">
           <property name="text">
-           <string>Frustrum</string>
+           <string>Orthographic</string>
           </property>
          </widget>
         </item>
@@ -939,7 +951,7 @@ QPushButton:pressed {
   <tabstop>setBgColor</tabstop>
   <tabstop>solidPolygonType</tabstop>
   <tabstop>dashedPolygonType</tabstop>
-  <tabstop>polygonThickness</tabstop>
+  <tabstop>linesWidth</tabstop>
   <tabstop>setPolygonColor</tabstop>
   <tabstop>noneVertice</tabstop>
   <tabstop>circleVertice</tabstop>
