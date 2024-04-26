@@ -187,27 +187,5 @@ void View::setUISettings()
     if (ui->openGLWidget->getVerticesType() == 1) ui->circleVertice->setChecked(true);
     else if (ui->openGLWidget->getVerticesType() == 1) ui->squareVertice->setChecked(true);
     else ui->noneVertice->setChecked(true);
-
-
-    // if (ui->widget->edges_type == SOLID) {
-    //     ui->solidPolygonType->setChecked(true);
-    // } else {
-    //     ui->dashedPolygonType->setChecked(true);
-    // }
-    // if (ui->widget->vertice_type == NONE) {
-    //     ui->noneVertice->setChecked(true);
-    // } else if (ui->widget->vertice_type == CIRCLE) {
-    //     ui->circleVertice->setChecked(true);
-    // } else {
-    //     ui->squareVertice->setChecked(true);
-    // }
-    // ui->polygonThickness->setValue(settings->value("edges_thickness").toInt() *
-    //                                10);
-    // ui->sizeVertice->setValue(settings->value("vertice_size").toInt() * 5);
-    // if (ui->widget->projectionType == PARALLEL) {
-    //     ui->projectionType->setCurrentIndex(0);
-    // } else {
-    //     ui->projectionType->setCurrentIndex(1);
-    // }
 }
 
