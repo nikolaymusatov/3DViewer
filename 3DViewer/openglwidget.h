@@ -18,19 +18,29 @@ public:
     explicit OpenGLWidget(QWidget *parent = 0);
     ~OpenGLWidget() {}
 
-    void setVertices(QVector<QVector3D>* v);
-    void setIndices(QVector<GLuint>* i);
-    void setBackgroundColor(float red, float green, float blue);
-    void setPolygonColor(QColor color);
-    void setLinesWidth(int width);
-    void setStippleLines(bool status);
-    void setOrthoProjection(bool status);
-    void setVerticeColor(QColor color);
-    void setVerticeSize(int size);
-    void setVerticeType(int type);
     void rotateObject(const QVector3D &angles);
     void moveObject(double x, double y, double z);
     void scaleObject(double ratio);
+
+    void setVertices(QVector<QVector3D>* v);
+    void setIndices(QVector<GLuint>* i);
+    void setBackgroundColor(QColor color);
+    void setPolygonsColor(QColor color);
+    void setLinesWidth(int width);
+    void setStippleLines(bool status);
+    void setOrthoProjection(bool status);
+    void setVerticesColor(QColor color);
+    void setVerticesSize(int size);
+    void setVerticesType(int type);
+
+    QColor getBackgroundColor();
+    QColor getPolygonsColor();
+    QColor getVerticesColor();
+    int getLinesWidth();
+    int getVerticesSize();
+    int getVerticesType();
+    bool getStippleLines();
+    bool getOrthoProjection();
 
 private:
     void initializeGL() override;
@@ -38,17 +48,17 @@ private:
     void paintGL() override;
     void mousePressEvent(QMouseEvent *) override;
     void mouseMoveEvent(QMouseEvent *) override;
+    void wheelEvent(QWheelEvent *) override;
     void initShaders();
-    void setVerticeSettings();
+    void setVerticesSettings();
     void setLinesType();
     void setProjectionType();
 
-    int linesWidth, verticeSize, verticeType;
+    int linesWidth, verticesSize, verticesType;
     float aspectRatio, scale;
     bool stippleLines;
     bool orthoProjection;
-    QVector<GLfloat> bgColor;
-    QColor pColor, vColor;
+    QColor bgColor, pColor, vColor;
     QVector2D mousePos;
     QQuaternion rotation;
     QVector3D translation;

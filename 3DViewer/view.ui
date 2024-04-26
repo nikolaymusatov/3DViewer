@@ -166,7 +166,7 @@ QPushButton:pressed {
       </widget>
      </item>
      <item row="2" column="1" rowspan="4" colspan="2">
-      <widget class="QSlider" name="sizeVertice">
+      <widget class="QSlider" name="sizeVerticeSlider">
        <property name="sizePolicy">
         <sizepolicy hsizetype="Preferred" vsizetype="Expanding">
          <horstretch>0</horstretch>
@@ -291,7 +291,7 @@ QPushButton:pressed {
       </widget>
      </item>
      <item row="2" column="1" rowspan="3" colspan="2">
-      <widget class="QSlider" name="linesWidth">
+      <widget class="QSlider" name="linesWidthSlider">
        <property name="sizePolicy">
         <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
          <horstretch>0</horstretch>
@@ -951,12 +951,12 @@ QPushButton:pressed {
   <tabstop>setBgColor</tabstop>
   <tabstop>solidPolygonType</tabstop>
   <tabstop>dashedPolygonType</tabstop>
-  <tabstop>linesWidth</tabstop>
+  <tabstop>linesWidthSlider</tabstop>
   <tabstop>setPolygonColor</tabstop>
   <tabstop>noneVertice</tabstop>
   <tabstop>circleVertice</tabstop>
   <tabstop>squareVertice</tabstop>
-  <tabstop>sizeVertice</tabstop>
+  <tabstop>sizeVerticeSlider</tabstop>
   <tabstop>setVerticeColor</tabstop>
  </tabstops>
  <resources/>

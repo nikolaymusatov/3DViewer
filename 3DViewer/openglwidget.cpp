@@ -18,13 +18,13 @@ void OpenGLWidget::setIndices(QVector<GLuint> *i)
     indices = i;
 }
 
-void OpenGLWidget::setBackgroundColor(float red, float green, float blue)
+void OpenGLWidget::setBackgroundColor(QColor color)
 {
-    bgColor = {red, green, blue};
+    bgColor = color;
     update();
 }
 
-void OpenGLWidget::setPolygonColor(QColor color)
+void OpenGLWidget::setPolygonsColor(QColor color)
 {
     pColor = color;
 }
@@ -44,19 +44,59 @@ void OpenGLWidget::setOrthoProjection(bool status)
     orthoProjection = status;
 }
 
-void OpenGLWidget::setVerticeColor(QColor color)
+void OpenGLWidget::setVerticesColor(QColor color)
 {
     vColor = color;
 }
 
-void OpenGLWidget::setVerticeSize(int size)
+void OpenGLWidget::setVerticesSize(int size)
 {
-    verticeSize = size;
+    verticesSize = size;
 }
 
-void OpenGLWidget::setVerticeType(int type)
+void OpenGLWidget::setVerticesType(int type)
 {
-    verticeType = type;
+    verticesType = type;
+}
+
+QColor OpenGLWidget::getBackgroundColor()
+{
+    return bgColor;
+}
+
+QColor OpenGLWidget::getPolygonsColor()
+{
+    return pColor;
+}
+
+QColor OpenGLWidget::getVerticesColor()
+{
+    return vColor;
+}
+
+int OpenGLWidget::getLinesWidth()
+{
+    return linesWidth;
+}
+
+int OpenGLWidget::getVerticesSize()
+{
+    return verticesSize;
+}
+
+int OpenGLWidget::getVerticesType()
+{
+    return verticesType;
+}
+
+bool OpenGLWidget::getStippleLines()
+{
+    return stippleLines;
+}
+
+bool OpenGLWidget::getOrthoProjection()
+{
+    return orthoProjection;
 }
 
 void OpenGLWidget::rotateObject(const QVector3D &angles)
@@ -78,22 +118,20 @@ void OpenGLWidget::scaleObject(double ratio)
 
 void OpenGLWidget::initializeGL()
 {
-    bgColor = {0.9, 0.9, 0.9};
-    pColor = QColor(80, 80, 80, 255);
-    vColor = QColor(80, 80, 80, 255);
-    linesWidth = 1;
-    verticeSize = 1;
-    verticeType = 0;
-    scale = 1.0;
-    stippleLines = false;
-    orthoProjection = false;
+    // bgColor = QColor(230, 230, 230, 255);
+    // pColor = QColor(80, 80, 80, 255);
+    // vColor = QColor(80, 80, 80, 255);
+    // linesWidth = 1;
+    // verticesSize = 1;
+    // verticesType = 0;
+    // scale = 1.0;
+    // stippleLines = false;
+    // orthoProjection = false;
 
     initializeOpenGLFunctions();
-    glClearColor(bgColor[0], bgColor[1], bgColor[2], 1);
     glEnable(GL_DEPTH_TEST);
     glEnable(GL_CULL_FACE);
     initShaders();
-
 }
 
 void OpenGLWidget::resizeGL(int w, int h)
@@ -105,10 +143,10 @@ void OpenGLWidget::resizeGL(int w, int h)
 void OpenGLWidget::paintGL()
 {
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-    glClearColor(bgColor[0], bgColor[1], bgColor[2], 1);
+    glClearColor(bgColor.redF(), bgColor.greenF(), bgColor.blueF(), bgColor.alphaF());
     glLineWidth(linesWidth);
     setLinesType();
-    setVerticeSettings();
+    setVerticesSettings();
     if (vertices) {
         projectionMatrix.setToIdentity();
         setProjectionType();
@@ -117,7 +155,7 @@ void OpenGLWidget::paintGL()
         modelMatrix.setToIdentity();
         modelMatrix.scale(scale);
         modelMatrix.rotate(rotation);
-        //modelMatrix.translate(translation);
+        modelMatrix.translate(translation); // ошибка проекции
         program.enableAttributeArray("vertexPosition");
         program.setAttributeArray("vertexPosition", vertices->constData());
         program.setUniformValue("renderTexture", false);
@@ -127,7 +165,7 @@ void OpenGLWidget::paintGL()
         program.setUniformValue("projectionMatrix", projectionMatrix);
         program.setUniformValue("modelViewProjMatrix", projectionMatrix * viewMatrix * modelMatrix);
         glDrawElements(GL_LINES, indices->size(), GL_UNSIGNED_INT, indices->constData());
-        if (verticeType) glDrawElements(GL_POINTS, indices->size(), GL_UNSIGNED_INT, indices->constData());
+        if (verticesType) glDrawElements(GL_POINTS, indices->size(), GL_UNSIGNED_INT, indices->constData());
     }
 }
 
@@ -150,6 +188,20 @@ void OpenGLWidget::mouseMoveEvent(QMouseEvent *event)
     update();
 }
 
+void OpenGLWidget::wheelEvent(QWheelEvent *event)
+{
+    QPoint angleDelta = event->angleDelta();
+    if (!angleDelta.isNull()) {
+        int delta = angleDelta.y();
+        if (delta > 0)
+            scale *= 1.02;
+        else
+            scale /= 1.02;
+
+        update();
+    }
+}
+
 void OpenGLWidget::initShaders()
 {
     program.addShaderFromSourceFile(QOpenGLShader::Vertex, ":/vshader.vsh");
@@ -158,14 +210,14 @@ void OpenGLWidget::initShaders()
     program.bind();
 }
 
-void OpenGLWidget::setVerticeSettings()
+void OpenGLWidget::setVerticesSettings()
 {
-    if (verticeType == 1) {
+    if (verticesType == 1) {
         glEnable(GL_POINT_SMOOTH);
     } else {
         glDisable(GL_POINT_SMOOTH);
     }
-    glPointSize(verticeSize);
+    glPointSize(verticesSize);
 }
 
 void OpenGLWidget::setLinesType()
@@ -181,7 +233,7 @@ void OpenGLWidget::setLinesType()
 void OpenGLWidget::setProjectionType()
 {
     if (orthoProjection)
-        projectionMatrix.ortho(-2 * aspectRatio, 2 * aspectRatio, -2, 2, 0.001, 10000);
+        projectionMatrix.ortho(-1.7 * aspectRatio, 1.7 * aspectRatio, -1.7, 1.7, 0.001, 10000);
     else
         projectionMatrix.perspective(45, aspectRatio, 0.001f, 1000.0f);
 }
