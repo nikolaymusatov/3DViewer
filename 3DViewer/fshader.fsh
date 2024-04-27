@@ -1,9 +1,6 @@
-uniform bool renderTexture;
-uniform bool colorVertices;
-uniform vec4 pColor;
-uniform vec4 vColor;
+uniform vec4 color;
 
 void main(void)
 {
-    gl_FragColor = pColor;
+    gl_FragColor = color;
 }

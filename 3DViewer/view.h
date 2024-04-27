@@ -3,6 +3,8 @@
 
 #include <QMainWindow>
 #include <QFileDialog>
+#include <QVector3D>
+#include <QMouseEvent>
 #include <QColorDialog>
 #include <QSettings>
 #include <memory>
@@ -43,11 +45,16 @@ private:
     Ui::View *ui;
     std::unique_ptr<Controller> controller;
     std::unique_ptr<QSettings> settings;
+    QVector2D mousePos;
 
     void initializeUI();
     void saveSettings();
     void loadSettings();
     void setUISettings();
+
+    void mousePressEvent(QMouseEvent *) override;
+    void mouseMoveEvent(QMouseEvent *) override;
+    void wheelEvent(QWheelEvent *) override;
 };
 
 }  // namespace s21

@@ -46,9 +46,6 @@ private:
     void initializeGL() override;
     void resizeGL(int w, int h) override;
     void paintGL() override;
-    void mousePressEvent(QMouseEvent *) override;
-    void mouseMoveEvent(QMouseEvent *) override;
-    void wheelEvent(QWheelEvent *) override;
     void initShaders();
     void setVerticesSettings();
     void setLinesType();
@@ -59,7 +56,6 @@ private:
     bool stippleLines;
     bool orthoProjection;
     QColor bgColor, pColor, vColor;
-    QVector2D mousePos;
     QQuaternion rotation;
     QVector3D translation;
     QMatrix4x4 modelMatrix, viewMatrix, projectionMatrix;

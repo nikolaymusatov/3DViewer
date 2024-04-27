@@ -108,7 +108,7 @@ void OpenGLWidget::moveObject(double x, double y, double z)
 {
     translation.setX(x);
     translation.setY(y);
-    translation.setZ(z - 5);
+    translation.setZ(z);
 }
 
 void OpenGLWidget::scaleObject(double ratio)
@@ -118,16 +118,6 @@ void OpenGLWidget::scaleObject(double ratio)
 
 void OpenGLWidget::initializeGL()
 {
-    // bgColor = QColor(230, 230, 230, 255);
-    // pColor = QColor(80, 80, 80, 255);
-    // vColor = QColor(80, 80, 80, 255);
-    // linesWidth = 1;
-    // verticesSize = 1;
-    // verticesType = 0;
-    // scale = 1.0;
-    // stippleLines = false;
-    // orthoProjection = false;
-
     initializeOpenGLFunctions();
     glEnable(GL_DEPTH_TEST);
     glEnable(GL_CULL_FACE);
@@ -142,8 +132,8 @@ void OpenGLWidget::resizeGL(int w, int h)
 
 void OpenGLWidget::paintGL()
 {
-    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
     glClearColor(bgColor.redF(), bgColor.greenF(), bgColor.blueF(), bgColor.alphaF());
+    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
     glLineWidth(linesWidth);
     setLinesType();
     setVerticesSettings();
@@ -155,50 +145,20 @@ void OpenGLWidget::paintGL()
         modelMatrix.setToIdentity();
         modelMatrix.scale(scale);
         modelMatrix.rotate(rotation);
-        modelMatrix.translate(translation); // ошибка проекции
+        modelMatrix.translate(translation);
         program.enableAttributeArray("vertexPosition");
         program.setAttributeArray("vertexPosition", vertices->constData());
         program.setUniformValue("renderTexture", false);
-        program.setUniformValue("pColor", pColor);
-        program.setUniformValue("vColor", vColor);
+        program.setUniformValue("color", pColor);
         program.setUniformValue("modelViewMatrix", viewMatrix * modelMatrix);
         program.setUniformValue("projectionMatrix", projectionMatrix);
         program.setUniformValue("modelViewProjMatrix", projectionMatrix * viewMatrix * modelMatrix);
         glDrawElements(GL_LINES, indices->size(), GL_UNSIGNED_INT, indices->constData());
-        if (verticesType) glDrawElements(GL_POINTS, indices->size(), GL_UNSIGNED_INT, indices->constData());
-    }
-}
+        if (verticesType) {
+            program.setUniformValue("color", vColor);
+            glDrawElements(GL_POINTS, indices->size(), GL_UNSIGNED_INT, indices->constData());
+        }
 
-void OpenGLWidget::mousePressEvent(QMouseEvent *event)
-{
-    if (event->buttons() == Qt::LeftButton)
-        mousePos = QVector2D(event->position());
-    event->accept();
-}
-
-void OpenGLWidget::mouseMoveEvent(QMouseEvent *event)
-{
-    float *x, *y, *z;
-    if (event->buttons() != Qt::LeftButton) return;
-    QVector2D diff = QVector2D(event->position()) - mousePos;
-    mousePos = QVector2D(event->position());
-    float angle = diff.length() / 2.0;
-    QVector3D axis = QVector3D(diff.y(), diff.x(), 0.0f);
-    rotation = QQuaternion::fromAxisAndAngle(axis, angle) * rotation;
-    update();
-}
-
-void OpenGLWidget::wheelEvent(QWheelEvent *event)
-{
-    QPoint angleDelta = event->angleDelta();
-    if (!angleDelta.isNull()) {
-        int delta = angleDelta.y();
-        if (delta > 0)
-            scale *= 1.02;
-        else
-            scale /= 1.02;
-
-        update();
     }
 }
 

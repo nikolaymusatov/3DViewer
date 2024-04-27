@@ -189,3 +189,32 @@ void View::setUISettings()
     else ui->noneVertice->setChecked(true);
 }
 
+void View::mousePressEvent(QMouseEvent *event)
+{
+    if (event->buttons() == Qt::LeftButton)
+        mousePos = QVector2D(event->position());
+    event->accept();
+}
+
+void View::mouseMoveEvent(QMouseEvent *event)
+{
+    if (event->buttons() != Qt::LeftButton) return;
+    QVector2D diff = QVector2D(event->position()) - mousePos;
+    mousePos = QVector2D(event->position());
+    ui->rotateX->setValue(ui->rotateX->value() + diff.y());
+    ui->rotateY->setValue(ui->rotateY->value() + diff.x());
+}
+
+void View::wheelEvent(QWheelEvent *event)
+{
+    QPoint angleDelta = event->angleDelta();
+    if (!angleDelta.isNull()) {
+        int delta = angleDelta.y();
+        if (delta > 0)
+            ui->scale->setValue(ui->scale->value() * 1.02);
+        else
+            ui->scale->setValue(ui->scale->value() / 1.02);
+        update();
+    }
+}
+
