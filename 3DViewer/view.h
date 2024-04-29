@@ -3,12 +3,12 @@
 
 #include <QMainWindow>
 #include <QFileDialog>
-#include <QVector3D>
 #include <QMouseEvent>
 #include <QColorDialog>
 #include <QSettings>
 #include <memory>
 #include "controller.h"
+#include "gifcreator.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui {
@@ -28,6 +28,8 @@ public:
 
 private slots:
     void openFile_clicked();
+    void getScreenshot_clicked();
+    void createGIF_clicked();
     void resetParams_clicked();
     void setBgColor_clicked();
     void setPolygonsColor_clicked();
@@ -41,11 +43,16 @@ private slots:
     void verticesType_toggled();
     void projectionType_toggled(bool checked);
 
+    // menu bar
+    void on_actionOpen_triggered();
+    void on_actionSave_as_triggered();
+
 private:
     Ui::View *ui;
     std::unique_ptr<Controller> controller;
     std::unique_ptr<QSettings> settings;
     QVector2D mousePos;
+    bool fileOpened;
 
     void initializeUI();
     void saveSettings();
@@ -53,6 +60,7 @@ private:
     void setUISettings();
 
     void mousePressEvent(QMouseEvent *) override;
+    void mouseReleaseEvent(QMouseEvent *) override;
     void mouseMoveEvent(QMouseEvent *) override;
     void wheelEvent(QWheelEvent *) override;
 };

@@ -21,6 +21,8 @@ set_source_files_properties(${app_icon_macos} PROPERTIES MACOSX_PACKAGE_LOCATION
 set(PROJECT_SOURCES
         controller.cpp
         controller.h
+        gifcreator.h
+        gifcreator.cpp
         main.cpp
         model.cpp
         model.h
@@ -29,13 +31,15 @@ set(PROJECT_SOURCES
         view.cpp
         view.h
         view.ui
+        thirdparty/gifanim/gifanim.h
+        thirdparty/gifanim/gifanim.cpp
+        Resourses.qrc
 )
 
 if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
     qt_add_executable(3DViewer
         MANUAL_FINALIZATION
         ${PROJECT_SOURCES}
-        Resourses.qrc
         ${app_icon_macos}
     )
 

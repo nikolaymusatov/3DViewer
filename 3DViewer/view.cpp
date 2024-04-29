@@ -23,15 +23,63 @@ void View::openFile_clicked()
     QString filename = QFileDialog::getOpenFileName(
         this, tr("Open .obj file:"), "~", tr("Obj Files (*.obj)"));
     if (!filename.isEmpty()) {
+        fileOpened = true;
         ui->fileName->setText("File: " + filename);
         controller->process(filename);
         ui->openGLWidget->setVertices(controller->getVertices());
         ui->openGLWidget->setIndices(controller->getIndices());
         ui->numVertices->setText("Number of vertices: " + QString::number(controller->getVertices()->size()) + ", ");
         ui->numEdges->setText("Number of edges: " + QString::number(controller->getIndices()->size() / 3));
+        ui->getScreenshot->setDisabled(false);
+        ui->createGIF->setDisabled(false);
+        ui->affins->setDisabled(false);
+        ui->actionSave_as->setDisabled(false);
+        ui->openGLWidget->setCursor(Qt::OpenHandCursor);
         resetParams_clicked();
     }
 }
+
+void View::getScreenshot_clicked()
+{
+    const QString suffix_jpeg = ".jpeg", suffix_bmp = ".bmp",
+        filter_jpeg = "JPEG Image (*." + suffix_jpeg + ")",
+        filter_bmp = "Bitmap Image (*." + suffix_bmp + ")";
+    QFileInfo file_info(ui->fileName->text());
+    QFileDialog saveImageDialog(this);
+    QString save_filename = file_info.baseName() + suffix_jpeg;
+    QString selected_filter;
+    QString image_name = saveImageDialog.getSaveFileName(
+        this, "Screenshot saving", save_filename, filter_jpeg + ";;" + filter_bmp,
+        &selected_filter);
+    if (image_name.length() > 0) {
+        if (!image_name.endsWith(suffix_jpeg, Qt::CaseInsensitive) &&
+            !image_name.endsWith(suffix_bmp, Qt::CaseInsensitive)) {
+            if (selected_filter == filter_jpeg) {
+                image_name += suffix_jpeg;
+            } else {
+                image_name += suffix_bmp;
+            }
+        }
+        QImage img = ui->openGLWidget->grabFramebuffer();
+        img.save(image_name);
+    }
+}
+
+void View::createGIF_clicked()
+{
+    const QString suffix_gif = ".gif";
+    QFileInfo file_info(ui->fileName->text());
+    QFileDialog saveGifDialog(this);
+    QString save_filename =
+        file_info.baseName() + suffix_gif;
+    QString gif_name =
+        saveGifDialog.getSaveFileName(this, "GIF saving", save_filename, suffix_gif);
+    if (gif_name.length() > 0) {
+        GifCreator *gifCreator = new GifCreator(ui->openGLWidget, gif_name);
+        gifCreator->createGif();
+    }
+}
+
 
 void View::resetParams_clicked()
 {
@@ -131,6 +179,8 @@ void View::initializeUI()
     ui->statusbar->addWidget(ui->numVertices);
     ui->statusbar->addWidget(ui->numEdges);
     connect(ui->openFile, SIGNAL(clicked()), this, SLOT(openFile_clicked()));
+    connect(ui->getScreenshot, SIGNAL(clicked()), this, SLOT(getScreenshot_clicked()));
+    connect(ui->createGIF, SIGNAL(clicked()), this, SLOT(createGIF_clicked()));
     connect(ui->resetParams, SIGNAL(clicked()), this, SLOT(resetParams_clicked()));
     connect(ui->setBgColor, SIGNAL(clicked()), this, SLOT(setBgColor_clicked()));
     connect(ui->setPolygonColor, SIGNAL(clicked()), this, SLOT(setPolygonsColor_clicked()));
@@ -167,6 +217,7 @@ void View::saveSettings()
 
 void View::loadSettings()
 {
+    fileOpened = false;
     ui->openGLWidget->setBackgroundColor(settings->value("bgColor", QColor(230, 230, 230, 255)).value<QColor>());
     ui->openGLWidget->setPolygonsColor(settings->value("pColor", QColor(80, 80, 80, 255)).value<QColor>());
     ui->openGLWidget->setVerticesColor(settings->value("vColor", QColor(80, 80, 80, 255)).value<QColor>());
@@ -187,28 +238,40 @@ void View::setUISettings()
     if (ui->openGLWidget->getVerticesType() == 1) ui->circleVertice->setChecked(true);
     else if (ui->openGLWidget->getVerticesType() == 1) ui->squareVertice->setChecked(true);
     else ui->noneVertice->setChecked(true);
+    ui->getScreenshot->setDisabled(true);
+    ui->createGIF->setDisabled(true);
+    ui->affins->setDisabled(true);
 }
 
 void View::mousePressEvent(QMouseEvent *event)
 {
-    if (event->buttons() == Qt::LeftButton)
+    if (fileOpened && event->buttons() == Qt::LeftButton) {
         mousePos = QVector2D(event->position());
-    event->accept();
+        ui->openGLWidget->setCursor(Qt::ClosedHandCursor);
+        event->accept();
+    }
+}
+
+void View::mouseReleaseEvent(QMouseEvent *event)
+{
+    if (fileOpened) ui->openGLWidget->setCursor(Qt::OpenHandCursor);
 }
 
 void View::mouseMoveEvent(QMouseEvent *event)
 {
     if (event->buttons() != Qt::LeftButton) return;
-    QVector2D diff = QVector2D(event->position()) - mousePos;
-    mousePos = QVector2D(event->position());
-    ui->rotateX->setValue(ui->rotateX->value() + diff.y());
-    ui->rotateY->setValue(ui->rotateY->value() + diff.x());
+    if (fileOpened) {
+        QVector2D diff = QVector2D(event->position()) - mousePos;
+        mousePos = QVector2D(event->position());
+        ui->rotateX->setValue(fmod(ui->rotateX->value() + diff.y() + 360, 360));
+        ui->rotateY->setValue(fmod(ui->rotateY->value() + diff.x() + 360, 360));
+    }
 }
 
 void View::wheelEvent(QWheelEvent *event)
 {
     QPoint angleDelta = event->angleDelta();
-    if (!angleDelta.isNull()) {
+    if (fileOpened && !angleDelta.isNull()) {
         int delta = angleDelta.y();
         if (delta > 0)
             ui->scale->setValue(ui->scale->value() * 1.02);
@@ -216,5 +279,16 @@ void View::wheelEvent(QWheelEvent *event)
             ui->scale->setValue(ui->scale->value() / 1.02);
         update();
     }
+}
+
+void View::on_actionOpen_triggered()
+{
+    openFile_clicked();
+}
+
+
+void View::on_actionSave_as_triggered()
+{
+    getScreenshot_clicked();
 }
 
