@@ -49,17 +49,13 @@ void View::getScreenshot_clicked()
     QString save_filename = file_info.baseName() + suffix_jpeg;
     QString selected_filter;
     QString image_name = saveImageDialog.getSaveFileName(
-        this, "Screenshot saving", save_filename, filter_jpeg + ";;" + filter_bmp,
-        &selected_filter);
-    if (image_name.length() > 0) {
-        if (!image_name.endsWith(suffix_jpeg, Qt::CaseInsensitive) &&
-            !image_name.endsWith(suffix_bmp, Qt::CaseInsensitive)) {
-            if (selected_filter == filter_jpeg) {
-                image_name += suffix_jpeg;
-            } else {
-                image_name += suffix_bmp;
-            }
-        }
+        this, "Screenshot saving", save_filename, filter_jpeg + ";;" + filter_bmp, &selected_filter);
+    if (!image_name.endsWith(suffix_jpeg, Qt::CaseInsensitive) &&
+        !image_name.endsWith(suffix_bmp, Qt::CaseInsensitive)) {
+        if (selected_filter == filter_jpeg)
+            image_name += suffix_jpeg;
+        else
+            image_name += suffix_bmp;
         QImage img = ui->openGLWidget->grabFramebuffer();
         img.save(image_name);
     }
@@ -70,14 +66,10 @@ void View::createGIF_clicked()
     const QString suffix_gif = ".gif";
     QFileInfo file_info(ui->fileName->text());
     QFileDialog saveGifDialog(this);
-    QString save_filename =
-        file_info.baseName() + suffix_gif;
-    QString gif_name =
-        saveGifDialog.getSaveFileName(this, "GIF saving", save_filename, suffix_gif);
-    if (gif_name.length() > 0) {
-        GifCreator *gifCreator = new GifCreator(ui->openGLWidget, gif_name);
-        gifCreator->createGif();
-    }
+    QString save_filename = file_info.baseName() + suffix_gif;
+    QString gif_name = saveGifDialog.getSaveFileName(this, "GIF saving", save_filename, suffix_gif);
+    GifCreator *gifCreator = new GifCreator(ui->openGLWidget, gif_name);
+    gifCreator->createGif();
 }
 
 
