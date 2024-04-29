@@ -1,5 +1,7 @@
 #include "gifcreator.h"
 
+using namespace s21;
+
 GifCreator::~GifCreator() {}
 
 GifCreator::GifCreator(QOpenGLWidget *widget, const QString &outputGifPath,

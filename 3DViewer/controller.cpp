@@ -5,7 +5,7 @@ using namespace s21;
 
 void Controller::process(QString &path)
 {
-    model->process(path);
+    model->parseFile(path);
 }
 
 QVector<QVector3D> *Controller::getVertices()

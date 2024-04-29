@@ -20,11 +20,6 @@ void Model::parseFile(QString& path)
         }
     }
     file.close();
-}
-
-void Model::process(QString& path)
-{
-    parseFile(path);
     centerModel();
 }
 
@@ -67,10 +62,10 @@ void Model::centerModel()
     for (size_t i = 0; i < vertices.size(); i++) {
         if (vertices[i].x() < ranges[0]) ranges[0] = vertices[i].x();
         if (vertices[i].x() > ranges[1]) ranges[1] = vertices[i].x();
-        if (vertices[i].x() < ranges[2]) ranges[2] = vertices[i].x();
-        if (vertices[i].x() > ranges[3]) ranges[3] = vertices[i].x();
-        if (vertices[i].x() < ranges[4]) ranges[4] = vertices[i].x();
-        if (vertices[i].x() > ranges[5]) ranges[5] = vertices[i].x();
+        if (vertices[i].y() < ranges[2]) ranges[2] = vertices[i].y();
+        if (vertices[i].y() > ranges[3]) ranges[3] = vertices[i].y();
+        if (vertices[i].z() < ranges[4]) ranges[4] = vertices[i].z();
+        if (vertices[i].z() > ranges[5]) ranges[5] = vertices[i].z();
     }
     float xOffset = (ranges[0] + ranges[1]) * 0.5,
           yOffset = (ranges[2] + ranges[3]) * 0.5,

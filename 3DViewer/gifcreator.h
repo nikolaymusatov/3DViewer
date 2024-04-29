@@ -9,6 +9,8 @@
 
 #include "thirdparty/gifanim/gifanim.h"
 
+namespace s21 {
+
 class GifCreator : public QObject
 {
     Q_OBJECT
@@ -35,5 +37,7 @@ private:
     int frameDelay;
     int width, height;
 };
+
+} // namespace s21
 
 #endif // GIFCREATOR_H

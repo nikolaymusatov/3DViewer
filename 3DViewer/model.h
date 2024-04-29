@@ -14,7 +14,7 @@ class Model {
     Model() = default;
      ~Model() {}
 
-    void process(QString& path);
+    void parseFile(QString& path);
     QVector<QVector3D>* getVertices();
     QVector<GLuint>* getIndices();
 
@@ -22,7 +22,6 @@ class Model {
     QVector<QVector3D> vertices;
     QVector<GLuint> indices;
 
-    void parseFile(QString& path);
     void parseVertice(QStringList &line);
     void parseFace(QStringList &line);
     void centerModel();
