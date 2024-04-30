@@ -1,5 +1,7 @@
 #include "model.h"
 
+#include <iostream>
+
 using namespace s21;
 
 void Model::parseFile(QString& path)
@@ -40,17 +42,26 @@ void Model::parseVertice(QStringList &line)
 
 void Model::parseFace(QStringList &line)
 {
-    GLuint first;
+    GLint first, current;
     for (int i = 1; i < line.size(); i++) {
         QStringList point = line[i].split("/", Qt::SkipEmptyParts);
         if (i == 1) {
-            first = point[0].toLong() - 1;
-            indices.append(point[0].toLong() - 1);
+            first = point[0].toLong();
+            transformIndex(first);
+            indices.append(first);
+        } else {
+            current = point[0].toLong();
+            transformIndex(current);
+            indices.append(current);
+            indices.append(current);
         }
-        indices.append(point[0].toLong() - 1);
-        indices.append(point[0].toLong() - 1);
         if (i == line.size() - 1) indices.append(first);
     }
+}
+
+void Model::transformIndex(GLint &index)
+{
+    index = index < 0 ? index = (vertices.size() + index) : index -= 1;
 }
 
 void Model::centerModel()

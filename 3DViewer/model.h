@@ -24,6 +24,7 @@ class Model {
 
     void parseVertice(QStringList &line);
     void parseFace(QStringList &line);
+    void transformIndex(GLint &index);
     void centerModel();
 };
 
