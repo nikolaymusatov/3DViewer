@@ -23,19 +23,23 @@ void View::openFile_clicked()
     QString filename = QFileDialog::getOpenFileName(
         this, tr("Open .obj file:"), "~", tr("Obj Files (*.obj)"));
     if (!filename.isEmpty()) {
-        fileOpened = true;
-        ui->fileName->setText("File: " + filename);
-        controller->Instance()->process(filename);
-        ui->openGLWidget->setVertices(controller->Instance()->getVertices());
-        ui->openGLWidget->setIndices(controller->Instance()->getIndices());
-        ui->numVertices->setText("Number of vertices: " + QString::number(controller->Instance()->getVertices()->size()) + ", ");
-        ui->numEdges->setText("Number of edges: " + QString::number(controller->Instance()->getIndices()->size() / 3));
-        ui->getScreenshot->setDisabled(false);
-        ui->createGIF->setDisabled(false);
-        ui->affins->setDisabled(false);
-        ui->actionSave_as->setDisabled(false);
-        ui->openGLWidget->setCursor(Qt::OpenHandCursor);
-        resetParams_clicked();
+        try {
+            controller->Instance()->process(filename);
+            fileOpened = true;
+            ui->openGLWidget->setVertices(controller->Instance()->getVertices());
+            ui->openGLWidget->setIndices(controller->Instance()->getIndices());
+            ui->fileName->setText("File: " + filename);
+            ui->numVertices->setText("Number of vertices: " + QString::number(controller->Instance()->getVertices()->size()) + ", ");
+            ui->numEdges->setText("Number of edges: " + QString::number(controller->Instance()->getIndices()->size() / 3));
+            ui->getScreenshot->setDisabled(false);
+            ui->createGIF->setDisabled(false);
+            ui->affins->setDisabled(false);
+            ui->actionSave_as->setDisabled(false);
+            ui->openGLWidget->setCursor(Qt::OpenHandCursor);
+            resetParams_clicked();
+        } catch (QString e) {
+            QMessageBox::warning(this, "Warning", e);
+        }
     }
 }
 

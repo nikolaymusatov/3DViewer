@@ -3,6 +3,7 @@
 
 #include <QMainWindow>
 #include <QFileDialog>
+#include <QMessageBox>
 #include <QMouseEvent>
 #include <QColorDialog>
 #include <QSettings>

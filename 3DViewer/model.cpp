@@ -28,7 +28,8 @@ void Model::parseFile(QString& path)
         }
     }
     file.close();
-    centerModel();
+    if (vertices.empty()) throw QString("Empty file!");
+    else centerModel();
 }
 
 QVector<QVector3D> *Model::getVertices()
