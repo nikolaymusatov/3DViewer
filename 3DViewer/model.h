@@ -1,6 +1,7 @@
 #ifndef MODEL_H
 #define MODEL_H
 
+#include <exception>
 #include <QFile>
 #include <QTextStream>
 #include <QVector3D>

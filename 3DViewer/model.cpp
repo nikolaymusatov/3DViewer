@@ -44,7 +44,8 @@ QVector<GLuint> *Model::getIndices()
 
 void Model::parseVertice(QStringList &line)
 {
-    vertices.append(QVector3D(line[1].toFloat(), line[2].toFloat(), line[3].toFloat()));
+    if (line.size() < 4) throw QString("File is damaged!");
+    else vertices.append(QVector3D(line[1].toFloat(), line[2].toFloat(), line[3].toFloat()));
 }
 
 void Model::parseFace(QStringList &line)
