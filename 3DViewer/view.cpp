@@ -6,7 +6,7 @@ using namespace s21;
 View::View(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::View)
-    , controller(new Controller())
+    , controller(Controller::Instance())
     , settings(new QSettings())
 {
     initializeUI();
@@ -25,11 +25,11 @@ void View::openFile_clicked()
     if (!filename.isEmpty()) {
         fileOpened = true;
         ui->fileName->setText("File: " + filename);
-        controller->process(filename);
-        ui->openGLWidget->setVertices(controller->getVertices());
-        ui->openGLWidget->setIndices(controller->getIndices());
-        ui->numVertices->setText("Number of vertices: " + QString::number(controller->getVertices()->size()) + ", ");
-        ui->numEdges->setText("Number of edges: " + QString::number(controller->getIndices()->size() / 3));
+        controller->Instance()->process(filename);
+        ui->openGLWidget->setVertices(controller->Instance()->getVertices());
+        ui->openGLWidget->setIndices(controller->Instance()->getIndices());
+        ui->numVertices->setText("Number of vertices: " + QString::number(controller->Instance()->getVertices()->size()) + ", ");
+        ui->numEdges->setText("Number of edges: " + QString::number(controller->Instance()->getIndices()->size() / 3));
         ui->getScreenshot->setDisabled(false);
         ui->createGIF->setDisabled(false);
         ui->affins->setDisabled(false);

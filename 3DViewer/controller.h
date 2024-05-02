@@ -8,15 +8,18 @@ namespace s21 {
 
 class Controller {
  public:
-    Controller() : model(new Model()) {}
-    ~Controller() {}
+    static Controller* Instance();
 
     void process(QString &path);
     QVector<QVector3D>* getVertices();
     QVector<GLuint>* getIndices();
   
  private:
-    std::unique_ptr<Model> model;
+    Controller() : model(Model::Instance()) {}
+    Controller(const Controller &) = delete;
+    Controller& operator=(const Controller &) = delete;
+
+    Model* model;
 };
 
 }  // namespace s21

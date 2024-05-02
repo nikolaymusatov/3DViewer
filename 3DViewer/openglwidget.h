@@ -33,14 +33,14 @@ public:
     void setVerticesSize(int size);
     void setVerticesType(int type);
 
-    QColor getBackgroundColor();
-    QColor getPolygonsColor();
-    QColor getVerticesColor();
-    int getLinesWidth();
-    int getVerticesSize();
-    int getVerticesType();
-    bool getStippleLines();
-    bool getOrthoProjection();
+    QColor getBackgroundColor() const;
+    QColor getPolygonsColor() const;
+    QColor getVerticesColor() const;
+    int getLinesWidth() const;
+    int getVerticesSize() const;
+    int getVerticesType() const;
+    bool getStippleLines() const;
+    bool getOrthoProjection() const;
 
 private:
     void initializeGL() override;

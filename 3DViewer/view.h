@@ -47,9 +47,9 @@ private slots:
     void on_actionOpen_triggered();
     void on_actionSave_as_triggered();
 
-private:
+private:    
     Ui::View *ui;
-    std::unique_ptr<Controller> controller;
+    Controller* controller;
     std::unique_ptr<QSettings> settings;
     QVector2D mousePos;
     bool fileOpened;

@@ -59,42 +59,42 @@ void OpenGLWidget::setVerticesType(int type)
     verticesType = type;
 }
 
-QColor OpenGLWidget::getBackgroundColor()
+QColor OpenGLWidget::getBackgroundColor() const
 {
     return bgColor;
 }
 
-QColor OpenGLWidget::getPolygonsColor()
+QColor OpenGLWidget::getPolygonsColor() const
 {
     return pColor;
 }
 
-QColor OpenGLWidget::getVerticesColor()
+QColor OpenGLWidget::getVerticesColor() const
 {
     return vColor;
 }
 
-int OpenGLWidget::getLinesWidth()
+int OpenGLWidget::getLinesWidth() const
 {
     return linesWidth;
 }
 
-int OpenGLWidget::getVerticesSize()
+int OpenGLWidget::getVerticesSize() const
 {
     return verticesSize;
 }
 
-int OpenGLWidget::getVerticesType()
+int OpenGLWidget::getVerticesType() const
 {
     return verticesType;
 }
 
-bool OpenGLWidget::getStippleLines()
+bool OpenGLWidget::getStippleLines() const
 {
     return stippleLines;
 }
 
-bool OpenGLWidget::getOrthoProjection()
+bool OpenGLWidget::getOrthoProjection() const
 {
     return orthoProjection;
 }

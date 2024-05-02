@@ -4,6 +4,12 @@
 
 using namespace s21;
 
+Model *Model::Instance()
+{
+    static Model model;
+    return &model;
+}
+
 void Model::parseFile(QString& path)
 {
     indices.clear();

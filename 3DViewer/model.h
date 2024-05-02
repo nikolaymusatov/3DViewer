@@ -11,14 +11,16 @@ namespace s21 {
 
 class Model {
  public:
-    Model() = default;
-     ~Model() {}
-
+    static Model* Instance();
     void parseFile(QString& path);
     QVector<QVector3D>* getVertices();
     QVector<GLuint>* getIndices();
 
  private:
+    Model() = default;
+    Model (const Model &) = delete;
+    Model& operator=(const Model &) = delete;
+
     QVector<QVector3D> vertices;
     QVector<GLuint> indices;
 
