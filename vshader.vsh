@@ -1,10 +1,8 @@
 attribute vec3 vertexPosition;
-uniform mat4 modelViewMatrix;
-uniform mat4 projectionMatrix;
-uniform mat4 modelViewProjMatrix;
+uniform mat4 mvpMatrix;
 
 void main(void)
 {
-    vec4 eyeCoords = modelViewMatrix * vec4(vertexPosition, 1.0);
-    gl_Position = modelViewProjMatrix * vec4(vertexPosition, 1.0);
+//vec4 eyeCoords = modelViewMatrix * vec4(vertexPosition, 1.0);
+    gl_Position = mvpMatrix * vec4(vertexPosition, 1.0);
 }

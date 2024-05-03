@@ -138,21 +138,16 @@ void OpenGLWidget::paintGL()
     setLinesType();
     setVerticesSettings();
     if (vertices) {
-        projectionMatrix.setToIdentity();
+        mvpMatrix.setToIdentity();
         setProjectionType();
-        viewMatrix.setToIdentity();
-        viewMatrix.lookAt(QVector3D(0, 0, 5), QVector3D(0, 0, 0), QVector3D(0, 1, 0));
-        modelMatrix.setToIdentity();
-        modelMatrix.scale(scale);
-        modelMatrix.rotate(rotation);
-        modelMatrix.translate(translation);
+        mvpMatrix.lookAt(QVector3D(0, 0, 5), QVector3D(0, 0, 0), QVector3D(0, 1, 0));
+        mvpMatrix.scale(scale);
+        mvpMatrix.rotate(rotation);
+        mvpMatrix.translate(translation);
         program.enableAttributeArray("vertexPosition");
         program.setAttributeArray("vertexPosition", vertices->constData());
-        program.setUniformValue("renderTexture", false);
         program.setUniformValue("color", pColor);
-        program.setUniformValue("modelViewMatrix", viewMatrix * modelMatrix);
-        program.setUniformValue("projectionMatrix", projectionMatrix);
-        program.setUniformValue("modelViewProjMatrix", projectionMatrix * viewMatrix * modelMatrix);
+        program.setUniformValue("mvpMatrix", mvpMatrix);
         glDrawElements(GL_LINES, indices->size(), GL_UNSIGNED_INT, indices->constData());
         if (verticesType) {
             program.setUniformValue("color", vColor);
@@ -193,7 +188,7 @@ void OpenGLWidget::setLinesType()
 void OpenGLWidget::setProjectionType()
 {
     if (orthoProjection)
-        projectionMatrix.ortho(-1.7 * aspectRatio, 1.7 * aspectRatio, -1.7, 1.7, 0.001, 10000);
+        mvpMatrix.ortho(-1.7 * aspectRatio, 1.7 * aspectRatio, -1.7, 1.7, 0.001, 10000);
     else
-        projectionMatrix.perspective(45, aspectRatio, 0.001f, 1000.0f);
+        mvpMatrix.perspective(45, aspectRatio, 0.001f, 1000.0f);
 }

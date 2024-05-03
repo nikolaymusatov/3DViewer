@@ -58,7 +58,7 @@ private:
     QColor bgColor, pColor, vColor;
     QQuaternion rotation;
     QVector3D translation;
-    QMatrix4x4 modelMatrix, viewMatrix, projectionMatrix;
+    QMatrix4x4 mvpMatrix;
     QVector<QVector3D>* vertices;
     QVector<GLuint>* indices;
     QOpenGLShaderProgram program;
