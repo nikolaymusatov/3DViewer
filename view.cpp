@@ -60,9 +60,9 @@ void View::getScreenshot_clicked()
             image_name += suffix_jpeg;
         else
             image_name += suffix_bmp;
-        QImage img = ui->openGLWidget->grabFramebuffer();
-        img.save(image_name);
     }
+    QImage img = ui->openGLWidget->grabFramebuffer();
+    img.save(image_name);
 }
 
 void View::createGIF_clicked()
@@ -229,11 +229,20 @@ void View::setUISettings()
 {
     ui->linesWidthSlider->setSliderPosition(ui->openGLWidget->getLinesWidth());
     ui->sizeVerticeSlider->setSliderPosition(ui->openGLWidget->getVerticesSize());
-    if (ui->openGLWidget->getStippleLines()) ui->dashedPolygonType->setChecked(true);
-    if (ui->openGLWidget->getOrthoProjection()) ui->orthoProjection->setChecked(true);
-    if (ui->openGLWidget->getVerticesType() == 1) ui->circleVertice->setChecked(true);
-    else if (ui->openGLWidget->getVerticesType() == 1) ui->squareVertice->setChecked(true);
-    else ui->noneVertice->setChecked(true);
+    if (ui->openGLWidget->getStippleLines())
+        ui->dashedPolygonType->setChecked(true);
+    else
+        ui->solidPolygonType->setChecked(true);
+    if (ui->openGLWidget->getOrthoProjection())
+        ui->orthoProjection->setChecked(true);
+    else
+        ui->perspectProjection->setChecked(true);
+    if (ui->openGLWidget->getVerticesType() == 1)
+        ui->circleVertice->setChecked(true);
+    else if (ui->openGLWidget->getVerticesType() == 1)
+        ui->squareVertice->setChecked(true);
+    else
+        ui->noneVertice->setChecked(true);
     ui->getScreenshot->setDisabled(true);
     ui->createGIF->setDisabled(true);
     ui->affins->setDisabled(true);
