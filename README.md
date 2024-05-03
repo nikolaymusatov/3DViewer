@@ -1,3 +1,6 @@
+### JUST A LITTLE WARNING :)
+Due to the lates Qt updates my shaders dont work as good as they should, but dont worry, i will fix it as soon as i can :)
+
 # 3DViewer
 ## Information
 In this project a program to visualise the 3D wireframe models in C++ was implemented. 
